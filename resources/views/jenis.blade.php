@@ -310,7 +310,7 @@
                             </div>
 							
                             <div class="ml-md-auto py-2 py-md-0">
-                                <a href="tambah-barang.html">
+                                <a href="/tambah-jenis">
 								<button class="btn btn-secondary">
                                     
                                     <span class="btn-label">

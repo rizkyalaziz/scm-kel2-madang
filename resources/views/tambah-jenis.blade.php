@@ -292,20 +292,20 @@
 								<ul class="breadcrumbs">
 									<li class="nav-home">
 										<a href="#">
-											<i class="flaticon-home"></i>
+											<i class="flaticon-home text-white"></i>
 										</a>
 									</li>
 									<li class="separator text-white">
 										<i class="flaticon-right-arrow"></i>
 									</li>
 									<li class="nav-item text-white">
-										<a href="#">Data Barang</a>
+										<a href="#" class="text-white">Jenis Barang</a>
 									</li>
 									<li class="separator text-white">
 										<i class="flaticon-right-arrow"></i>
 									</li>
 									<li class="nav-item text-white">
-										<a href="#">Tambah Data</a>
+										<a href="#" class="text-white">Input Data</a>
 									</li>
 								</ul>
 							</div>
@@ -319,44 +319,20 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-									<div class="card-title">Tambah Data</div>
+									<div class="card-title">Data Jenis</div>
 								</div>
 								<div class="card-body">
 									<div class="row">
 										<div class="col-md-7 col-lg-7">
 											<div class="form-group">
-												<label for="idBarang">ID Barang</label>
+												<label for="kode">Kode Barang</label>
+												<input type="tel" class="form-control" id="kode"
+													placeholder="Masukkan Kode">
+											</div>
+                                            <div class="form-group">
+												<label for="idBarang">Jenis Barang</label>
 												<input type="tel" class="form-control" id="idBarang"
-													placeholder="Masukkan ID Barang">
-											</div>
-											<div class="form-group">
-												<label for="namaBarang">Nama Barang</label>
-												<input type="text" class="form-control" id="namaBarang"
-													placeholder="Masukkan Nama Barang">
-											</div>
-											<div class="form-group">
-												
-												<label for="defaultSelect">Kode Barang</label>
-												<select class="form-control form-control" id="defaultSelect">
-													<option>-- Kode --</option>
-												</select>
-											</div>
-											<div class="form-group">
-												
-												<label for="defaultSelect">Kategori Barang</label>
-												<select class="form-control form-control" id="defaultSelect">
-													<option>-- Kategori --</option>
-												</select>
-											</div>
-											<div class="form-group">
-												<label for="stock">Stock Minimum</label>
-												<input type="tel" class="form-control" id="stock"
-													placeholder="Masukkan Minimum Barang">
-											</div>
-											<div class="form-group">
-												<label for="satuan">Satuan</label>
-												<input type="tel" class="form-control" id="satuan"
-													placeholder="Masukkan Satuan Barang">
+													placeholder="Masukkan Jenis">
 											</div>
 											
 

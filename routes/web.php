@@ -29,3 +29,15 @@ Route::get('/satuan', function () {
 Route::get('/tambahbarang', function () {
     return view('/tambahbarang');
 });
+
+Route::get('/tambah-jenis', function () {
+    return view('/tambah-jenis');
+});
+
+Route::get('/tambah-kategori', function () {
+    return view('/tambah-kategori');
+});
+
+Route::get('/tambah-satuan', function () {
+    return view('/tambah-satuan');
+});
