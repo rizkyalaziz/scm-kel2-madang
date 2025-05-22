@@ -49,7 +49,7 @@
 					<div class="page-inner py-5">
 						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
 							<div class="page-header">
-								<h4 class="page-title text-white">Kategori Barang</h4>
+								<h4 class="page-title text-white">Satuan Barang</h4>
 								<ul class="breadcrumbs">
 									<li class="nav-home">
 										<a href="#">
@@ -80,17 +80,17 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-									<div class="card-title">Data Kategori</div>
+									<div class="card-title">Data Satuan</div>
 								</div>
 								<div class="card-body">
 									<div class="row">
 										<div class="col-md-7 col-lg-7">
 											<div class="form-group">
-												<label for="idBarang">Kategori Barang</label>
+												<label for="idBarang">Satuan Barang</label>
 												<input type="tel" class="form-control" id="idBarang"
 													placeholder="Masukkan Kategori Barang">
 											</div>
-											
+
 
 										</div>
 										<div class="col-md-5 col-lg-5">
@@ -101,29 +101,29 @@
 														<input type="file" class="form-control-file"
 															id="exampleFormControlFile1">
 													</div>
-													 
+
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-
+								<div class="card-action">
+									<button class="btn btn-success">Submit</button>
+									<button class="btn btn-danger">Cancel</button>
+								</div>
 							</div>
 						</div>
-						<div class="card-action">
-							<button class="btn btn-success">Submit</button>
-							<button class="btn btn-danger">Cancel</button>
-						</div>
+
 					</div>
 				</div>
-				
-			
+
+
+			</div>
 		</div>
 	</div>
 	</div>
-	</div>
 
-	 
+
 	</div>
 
 	</div>

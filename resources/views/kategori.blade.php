@@ -49,7 +49,7 @@
 					<div class="page-inner py-5">
 						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
 							<div class="page-header">
-                                <h4 class="page-title text-white">Kategori Barang</h4>
+                                <h4 class="page-title text-white"><i class="fas fa-home pr-2"></i>Kategori Barang</h4>
                                 <ul class="breadcrumbs">
                                     <li class="nav-home">
                                         <a href="#">
@@ -95,7 +95,7 @@
 								<div class="card-body">
 									<div class="table-responsive">
 										<table id="basic-datatables" class="display table table-striped table-hover text-center" >
-											<thead>
+											<thead class="table-dark">
 												<tr>
 													<th>No</th>
 													<th>Kategori Barang</th>

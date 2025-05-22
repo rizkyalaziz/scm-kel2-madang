@@ -41,3 +41,11 @@ Route::get('/tambah-kategori', function () {
 Route::get('/tambah-satuan', function () {
     return view('/tambah-satuan');
 });
+
+Route::get('/barangmasuk', function () {
+    return view('/barangmasuk');
+});
+
+Route::get('/barangkeluar', function () {
+    return view('/barangkeluar');
+});

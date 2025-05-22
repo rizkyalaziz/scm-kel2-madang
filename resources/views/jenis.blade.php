@@ -49,25 +49,26 @@
 					<div class="page-inner py-5">
 						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
 							<div class="page-header">
-                                <h4 class="page-title text-white">Jenis Barang</h4>
+								
+                                <h4 class="page-title text-white"> <i class="fas fa-home pr-2"></i> Jenis Barang</h4>
                                 <ul class="breadcrumbs">
                                     <li class="nav-home">
-                                        <a href="#">
-                                            <i class="flaticon-home"></i>
-                                        </a>
-                                    </li>
-                                    <li class="separator text-white">
-                                        <i class="flaticon-right-arrow"></i>
-                                    </li>
-                                    <li class="nav-item text-white">
-                                        <a href="#">Jenis Barang</a>
-                                    </li>
-                                    <li class="separator text-white">
-                                        <i class="flaticon-right-arrow"></i>
-                                    </li>
-                                    <li class="nav-item text-white">
-                                        <a href="#">Tambah Data</a>
-                                    </li>
+										<a href="#">
+											<i class="flaticon-home text-white"></i>
+										</a>
+									</li>
+									<li class="separator text-white">
+										<i class="flaticon-right-arrow"></i>
+									</li>
+									<li class="nav-item text-white">
+										<a href="#" class="text-white">Data Barang</a>
+									</li>
+									<li class="separator text-white">
+										<i class="flaticon-right-arrow"></i>
+									</li>
+									<li class="nav-item text-white">
+										<a href="#" class="text-white">Input Data</a>
+									</li>
                                 </ul>
                             </div>
 							
@@ -95,7 +96,7 @@
 								<div class="card-body">
 									<div class="table-responsive">
 										<table id="basic-datatables" class="display table table-striped table-hover text-center" >
-											<thead>
+											<thead class="table-dark">
 												<tr>
 													<th>No</th>
 													<th>Kode Barang</th>
