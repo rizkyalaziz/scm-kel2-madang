@@ -73,16 +73,13 @@
                             </div>
 							
                             <div class="ml-md-auto py-2 py-md-0">
-                                <a href="/tambah-jenis">
-								<button class="btn btn-secondary">
-                                    
+                                <button class="btn btn-secondary" data-toggle="modal" data-target="#modalTambahJenis">
                                     <span class="btn-label">
                                         <i class="fa fa-plus"></i>
                                     </span>
                                     Tambah Data
                                 </button>
-                            </a>
-							</div>
+                            </div>
 						</div>
 					</div>
 				</div>
@@ -215,5 +212,35 @@
 			});
 		});
 	</script>
+
+	<!-- Modal Tambah Jenis -->
+<div class="modal fade" id="modalTambahJenis" tabindex="-1" role="dialog" aria-labelledby="modalTambahJenisLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTambahJenisLabel">Tambah Jenis</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="kodeBarang">Kode Barang</label>
+            <input type="text" class="form-control" id="kodeBarang" placeholder="Masukkan Kode Barang">
+          </div>
+          <div class="form-group">
+            <label for="jenisBarang">Jenis Barang</label>
+            <input type="text" class="form-control" id="jenisBarang" placeholder="Masukkan Jenis Barang">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Submit</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 </body>
 </html>
