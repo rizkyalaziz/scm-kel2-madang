@@ -96,14 +96,14 @@
 													placeholder="Masukkan Nama Barang">
 											</div>
 											<div class="form-group">
-												
+
 												<label for="defaultSelect">Kode Barang</label>
 												<select class="form-control form-control" id="defaultSelect">
 													<option>-- Kode --</option>
 												</select>
 											</div>
 											<div class="form-group">
-												
+
 												<label for="defaultSelect">Kategori Barang</label>
 												<select class="form-control form-control" id="defaultSelect">
 													<option>-- Kategori --</option>
@@ -119,7 +119,7 @@
 												<input type="tel" class="form-control" id="satuan"
 													placeholder="Masukkan Satuan Barang">
 											</div>
-											
+
 
 										</div>
 										<div class="col-md-5 col-lg-5">
@@ -130,29 +130,29 @@
 														<input type="file" class="form-control-file"
 															id="exampleFormControlFile1">
 													</div>
-													 
+
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-
+								<div class="card-action">
+									<button class="btn btn-success">Submit</button>
+									<button class="btn btn-danger">Cancel</button>
+								</div>
 							</div>
 						</div>
-						<div class="card-action">
-							<button class="btn btn-success">Submit</button>
-							<button class="btn btn-danger">Cancel</button>
-						</div>
+
 					</div>
 				</div>
-				
-			
+
+
+			</div>
 		</div>
 	</div>
 	</div>
-	</div>
 
-	 
+
 	</div>
 
 	</div>

@@ -51,23 +51,23 @@
 							<div class="page-header">
                                 <h4 class="page-title text-white"><i class="fas fa-home pr-2"></i>Kategori Barang</h4>
                                 <ul class="breadcrumbs">
-                                    <li class="nav-home">
-                                        <a href="#">
-                                            <i class="flaticon-home"></i>
-                                        </a>
-                                    </li>
-                                    <li class="separator text-white">
-                                        <i class="flaticon-right-arrow"></i>
-                                    </li>
-                                    <li class="nav-item text-white">
-                                        <a href="#">Kategori Barang</a>
-                                    </li>
-                                    <li class="separator text-white">
-                                        <i class="flaticon-right-arrow"></i>
-                                    </li>
-                                    <li class="nav-item text-white">
-                                        <a href="#">Tambah Data</a>
-                                    </li>
+                                    <<li class="nav-home">
+										<a href="#">
+											<i class="flaticon-home text-white"></i>
+										</a>
+									</li>
+									<li class="separator text-white">
+										<i class="flaticon-right-arrow"></i>
+									</li>
+									<li class="nav-item text-white">
+										<a href="#" class="text-white">Data Barang</a>
+									</li>
+									<li class="separator text-white">
+										<i class="flaticon-right-arrow"></i>
+									</li>
+									<li class="nav-item text-white">
+										<a href="#" class="text-white">Input Data</a>
+									</li>
                                 </ul>
                             </div>
 							
