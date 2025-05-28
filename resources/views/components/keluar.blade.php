@@ -8,8 +8,8 @@
 				<div class="info">
 					<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 						<span>
-							Inass
-							<span class="user-level">Staff Gudang</span>
+							<?php echo Auth::user()->name ?>
+							<span class="user-level">Staff Admin Gudang</span>
 					</a>
 				</div>
 			</div>

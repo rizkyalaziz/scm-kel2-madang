@@ -72,7 +72,7 @@
 							</div>
 
 							<div class="ml-md-auto py-2 py-md-0">
-								<a href="/tambahbarang">
+								<a href="/tambahmasuk">
 									<button class="btn btn-primary">
 										<span class="btn-label">
 											<i class="fa fa-plus"></i>

@@ -7,9 +7,7 @@
 				</div>
 				<div class="info">
 					<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
-						<span>
-							Inasss
-							<span class="user-level">Staff Gudang</span>
+						<span><?php echo Auth::user()->name ?><span class="user-level"><?php echo Auth::user()->role ?></span>
 					</a>
 				</div>
 			</div>

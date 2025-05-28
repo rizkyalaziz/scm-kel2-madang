@@ -49,7 +49,7 @@
 					<div class="page-inner py-5">
 						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
 							<div class="page-header">
-								<h4 class="page-title text-white">Menu Dashboard</h4>
+								<h4 class="page-title text-white"><i class="fas fa-home pr-2"></i>Menu Dashboard</h4>
 
 							</div>
 

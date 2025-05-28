@@ -10861,7 +10861,7 @@ a:focus {
 }
 
 .bg-login-image {
-  background: url("");
+  background: url("/public/css/LogoMieGacoan.png");
   background-position: center;
   background-size: cover;
 }

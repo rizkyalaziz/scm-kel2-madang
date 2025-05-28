@@ -40,7 +40,7 @@
 		</div>
 
 		<!-- Sidebar -->
-		<x-stock></x-stock>
+		<x-masuk></x-masuk>
 		<!-- End Sidebar -->
 
 		<div class="main-panel">
@@ -122,7 +122,18 @@
 
 
 										</div>
-										 
+										<div class="col-md-5 col-lg-5">
+											<div class="form-group">
+												<div class="input-group mb-3">
+													<div class="form-group">
+														<label for="exampleFormControlFile1">Example file input</label>
+														<input type="file" class="form-control-file"
+															id="exampleFormControlFile1">
+													</div>
+
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 								<div class="card-action">
