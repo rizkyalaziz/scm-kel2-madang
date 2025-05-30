@@ -73,7 +73,7 @@
                             </div>
 							
                             <div class="ml-md-auto py-2 py-md-0">
-                                <button class="btn btn-secondary" data-toggle="modal" data-target="#modalTambahJenis">
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#modalTambahJenis">
                                     <span class="btn-label">
                                         <i class="fa fa-plus"></i>
                                     </span>

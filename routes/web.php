@@ -71,3 +71,15 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/tambahmasuk', function () {
     return view('/tambahmasuk');
 });
+
+Route::get('/laporan-masuk', function () {
+    return view('/laporan-masuk');
+});
+
+Route::get('/tambahkeluar', function () {
+    return view('/tambahkeluar');
+});
+
+Route::get('/laporan-keluar', function () {
+    return view('/laporan-keluar');
+});
