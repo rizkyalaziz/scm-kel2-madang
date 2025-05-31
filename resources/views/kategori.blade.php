@@ -91,7 +91,7 @@
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">
-										<table id="basic-datatables" class="display table table-striped table-hover text-center" >
+										<table id="basic-datatables" class="display table table-striped table-hover text-center">
 											<thead class="table-dark">
 												<tr>
 													<th>No</th>
@@ -99,32 +99,52 @@
 													<th>Aksi</th>
 												</tr>
 											</thead>
-											<tfoot>
-												<tr>
-													<th>No</th>
-													<th>Kategori Barang</th>
-													<th>Aksi</th>
-												</tr>
-											</tfoot>
 											<tbody>
+												@foreach($kategori as $i => $item)
 												<tr>
-													<td>1</td>
-													<td>-</td>
-													<td>-</td>
-													
+													<td>{{ $i+1 }}</td>
+													<td>{{ $item->nama }}</td>
+													<td>
+														<form action="{{ route('kategori.destroy', $item->id) }}" method="POST" style="display:inline-block">
+															@csrf
+															@method('DELETE')
+															<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin hapus?')">
+																<i class="fa fa-trash"></i> Hapus
+															</button>
+														</form>
+														<button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalEditKategori{{ $item->id }}">
+															<i class="fa fa-edit"></i> Edit
+														</button>
+													</td>
 												</tr>
-												<tr>
-													<td>2</td>
-													<td>-</td>
-													<td>-</td>
-													
-												</tr>
-												<tr>
-													<td>3</td>
-													<td>-</td>
-													<td>-</td>
-													
-												</tr>
+												<!-- Modal Edit Kategori -->
+												<div class="modal fade" id="modalEditKategori{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="modalEditKategoriLabel{{ $item->id }}" aria-hidden="true">
+												  <div class="modal-dialog" role="document">
+												    <div class="modal-content">
+												      <div class="modal-header">
+												        <h5 class="modal-title" id="modalEditKategoriLabel{{ $item->id }}">Edit Kategori</h5>
+												        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												          <span aria-hidden="true">&times;</span>
+												        </button>
+												      </div>
+												      <form action="{{ route('kategori.update', $item->id) }}" method="POST">
+												        @csrf
+												        @method('PUT')
+												        <div class="modal-body">
+												          <div class="form-group">
+												            <label for="editKategoriBarang{{ $item->id }}">Kategori Barang</label>
+												            <input type="text" class="form-control" id="editKategoriBarang{{ $item->id }}" name="nama" value="{{ $item->nama }}" required>
+												          </div>
+												        </div>
+												        <div class="modal-footer">
+												          <button type="submit" class="btn btn-success">Update</button>
+												          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+												        </div>
+												      </form>
+												    </div>
+												  </div>
+												</div>
+												@endforeach
 											</tbody>
 										</table>
 									</div>
@@ -221,11 +241,12 @@
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
-	      <form>
+	      <form action="{{ route('kategori.store') }}" method="POST">
+	        @csrf
 	        <div class="modal-body">
 	          <div class="form-group">
 	            <label for="kategoriBarang">Kategori Barang</label>
-	            <input type="text" class="form-control" id="kategoriBarang" placeholder="Masukkan Kategori Barang">
+	            <input type="text" class="form-control" id="kategoriBarang" name="nama" placeholder="Masukkan Kategori Barang" required>
 	          </div>
 	        </div>
 	        <div class="modal-footer">

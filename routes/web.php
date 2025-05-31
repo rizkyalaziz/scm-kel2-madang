@@ -3,6 +3,12 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SesiController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SatuanController;
+use App\Http\Controllers\JenisController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\DatabarangController;
+use App\Http\Controllers\BarangMasukController;
+use App\Http\Controllers\BarangKeluarController;
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -10,10 +16,6 @@ Route::get('/welcome', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-});
-
-Route::get('/databarang', function () {
-    return view('databarang');
 });
 
 Route::get('/kategori', function () {
@@ -52,6 +54,14 @@ Route::get('/barangkeluar', function () {
     return view('/barangkeluar');
 });
 
+ fitur-adan
+Route::resource('satuan', SatuanController::class)->except(['show', 'create', 'edit']);
+Route::resource('jenis', JenisController::class)->except(['show', 'create', 'edit']);
+Route::resource('kategori', KategoriController::class)->except(['show', 'create', 'edit']);
+Route::resource('databarang', DatabarangController::class)->except(['show', 'create', 'edit']);
+Route::resource('barangmasuk', BarangMasukController::class);
+Route::resource('barangkeluar', BarangKeluarController::class);
+
 Route::middleware(['guest'])->group(function () {
     Route::get('/', [SesiController::class, 'index'])->name('login');
     Route::post('/', [SesiController::class, 'login']);
@@ -83,3 +93,4 @@ Route::get('/tambahkeluar', function () {
 Route::get('/laporan-keluar', function () {
     return view('/laporan-keluar');
 });
+ master

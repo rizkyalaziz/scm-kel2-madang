@@ -72,13 +72,14 @@
 							</div>
 
 							<div class="ml-md-auto py-2 py-md-0">
-								<a href="/tambahmasuk">
-									<button class="btn btn-primary">
-										<span class="btn-label">
-											<i class="fa fa-plus"></i>
-										</span>
-										Tambah Data
-									</button>
+ fitur-adan
+								<button class="btn btn-primary" data-toggle="modal" data-target="#modalTambahBarangMasuk">
+									<span class="btn-label">
+										<i class="fa fa-plus"></i>
+									</span>
+									Tambah Data
+								</button>
+
                                     <button class="btn btn-success">
 											<span class="btn-label">
 												<i class="fa fa-check"></i>
@@ -86,6 +87,7 @@
 											Kirim Data
 										</button>
 								</a>
+ master
 							</div>
 
 						</div>
@@ -99,80 +101,133 @@
 									<h4 class="card-title">Data Barang Masuk</h4>
 								</div>
 								<div class="card-body">
+									<!-- Modal Tambah Barang Masuk -->
+									<div class="modal fade" id="modalTambahBarangMasuk" tabindex="-1" role="dialog" aria-labelledby="modalTambahBarangMasukLabel" aria-hidden="true">
+									  <div class="modal-dialog" role="document">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <h5 class="modal-title" id="modalTambahBarangMasukLabel">Tambah Barang Masuk</h5>
+									        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									          <span aria-hidden="true">&times;</span>
+									        </button>
+									      </div>
+									      <form action="{{ route('barangmasuk.store') }}" method="POST" enctype="multipart/form-data">
+									        @csrf
+									        <div class="modal-body">
+									          <div class="form-group">
+									            <label for="databarang_id">Nama Barang</label>
+									            <select class="form-control" id="databarang_id" name="databarang_id" required>
+									              <option value="">-- Pilih Barang --</option>
+									              @foreach($databarang as $barang)
+									                <option value="{{ $barang->id }}">{{ $barang->nama }}</option>
+									              @endforeach
+									            </select>
+									          </div>
+									          <div class="form-group">
+									            <label for="jumlah">Jumlah</label>
+									            <input type="number" class="form-control" id="jumlah" name="jumlah" min="1" required>
+									          </div>
+									          <div class="form-group">
+									            <label for="tanggal_masuk">Tanggal Masuk</label>
+									            <input type="date" class="form-control" id="tanggal_masuk" name="tanggal_masuk" required>
+									          </div>
+									          <div class="form-group">
+									            <label for="keterangan">Keterangan</label>
+									            <input type="text" class="form-control" id="keterangan" name="keterangan">
+									          </div>
+									          <div class="form-group">
+									            <label for="gambar">Upload Gambar/ File</label>
+									            <input type="file" class="form-control-file" id="gambar" name="gambar" accept="image/*" capture="environment">
+									          </div>
+									        </div>
+									        <div class="modal-footer">
+									          <button type="submit" class="btn btn-success">Submit</button>
+									          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+									        </div>
+									      </form>
+									    </div>
+									  </div>
+									</div>
+
 									<div class="table-responsive">
 										<table id="basic-datatables" class="display table table-striped table-hover text-center">
 											<thead class="table-dark">
 												<tr>
 													<th>No</th>
-													<th>ID Barang</th>
 													<th>Nama Barang</th>
-													<th>Stok</th>
-													 
-													<th>Satuan</th>
+													<th>Jumlah</th>
+													<th>Tanggal Masuk</th>
+													<th>Keterangan</th>
 													<th>Aksi</th>
 												</tr>
 											</thead>
-											<tfoot>
-												<tr>
-													<th>No</th>
-													<th>ID Barang</th>
-													<th>Nama Barang</th>
-													<th>Stok</th>
-													 
-													<th>Satuan</th>
-													<th>Aksi</th>
-												</tr>
-											</tfoot>
 											<tbody>
+												@foreach($barangmasuk as $i => $item)
 												<tr>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													 
-													<td class="action-buttons">
-														<button class="btn btn-sm btn-warning">
-															<i class="fas fa-edit"></i> Edit
-														</button>
-														<button class="btn btn-sm btn-danger">
-															<i class="fas fa-trash-alt"></i> Hapus
+													<td>{{ $i+1 }}</td>
+													<td>{{ $item->databarang->nama ?? '-' }}</td>
+													<td>{{ $item->jumlah }}</td>
+													<td>{{ $item->tanggal_masuk }}</td>
+													<td>{{ $item->keterangan }}</td>
+													<td>
+														<form action="{{ route('barangmasuk.destroy', $item->id) }}" method="POST" style="display:inline-block">
+															@csrf
+															@method('DELETE')
+															<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin hapus?')">
+																<i class="fa fa-trash"></i> Hapus
+															</button>
+														</form>
+														<!-- Tombol Edit -->
+														<button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalEditBarangMasuk{{ $item->id }}">
+															<i class="fa fa-edit"></i> Edit
 														</button>
 													</td>
 												</tr>
-												<tr>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													 
-													<td class="action-buttons">
-														<button class="btn btn-sm btn-warning">
-															<i class="fas fa-edit"></i> Edit
-														</button>
-														<button class="btn btn-sm btn-danger">
-															<i class="fas fa-trash-alt"></i> Hapus
-														</button>
-													</td>
-												</tr>
-												<tr>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													 
-													<td class="action-buttons">
-														<button class="btn btn-sm btn-warning">
-															<i class="fas fa-edit"></i> Edit
-														</button>
-														<button class="btn btn-sm btn-danger">
-															<i class="fas fa-trash-alt"></i> Hapus
-														</button>
-													</td>
-												</tr>
-
+												<!-- Modal Edit Barang Masuk -->
+												<div class="modal fade" id="modalEditBarangMasuk{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="modalEditBarangMasukLabel{{ $item->id }}" aria-hidden="true">
+												  <div class="modal-dialog" role="document">
+												    <div class="modal-content">
+												      <div class="modal-header">
+												        <h5 class="modal-title" id="modalEditBarangMasukLabel{{ $item->id }}">Edit Barang Masuk</h5>
+												        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												          <span aria-hidden="true">&times;</span>
+												        </button>
+												      </div>
+												      <form action="{{ route('barangmasuk.update', $item->id) }}" method="POST">
+												        @csrf
+												        @method('PUT')
+												        <div class="modal-body">
+												          <div class="form-group">
+												            <label for="databarang_id{{ $item->id }}">Nama Barang</label>
+												            <select class="form-control" id="databarang_id{{ $item->id }}" name="databarang_id" required>
+												              <option value="">-- Pilih Barang --</option>
+												              @foreach($databarang as $barang)
+												                <option value="{{ $barang->id }}" {{ $item->databarang_id == $barang->id ? 'selected' : '' }}>{{ $barang->nama }}</option>
+												              @endforeach
+												            </select>
+												          </div>
+												          <div class="form-group">
+												            <label for="jumlah{{ $item->id }}">Jumlah</label>
+												            <input type="number" class="form-control" id="jumlah{{ $item->id }}" name="jumlah" value="{{ $item->jumlah }}" min="1" required>
+												          </div>
+												          <div class="form-group">
+												            <label for="tanggal_masuk{{ $item->id }}">Tanggal Masuk</label>
+												            <input type="date" class="form-control" id="tanggal_masuk{{ $item->id }}" name="tanggal_masuk" value="{{ $item->tanggal_masuk }}" required>
+												          </div>
+												          <div class="form-group">
+												            <label for="keterangan{{ $item->id }}">Keterangan</label>
+												            <input type="text" class="form-control" id="keterangan{{ $item->id }}" name="keterangan" value="{{ $item->keterangan }}">
+												          </div>
+												        </div>
+												        <div class="modal-footer">
+												          <button type="submit" class="btn btn-success">Update</button>
+												          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+												        </div>
+												      </form>
+												    </div>
+												  </div>
+												</div>
+												@endforeach
 											</tbody>
 										</table>
 									</div>

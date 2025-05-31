@@ -71,7 +71,16 @@
 								</ul>
 							</div>
 
+							<!-- Tombol untuk memunculkan modal -->
 							<div class="ml-md-auto py-2 py-md-0">
+fitur-adan
+								<button class="btn btn-secondary" data-toggle="modal" data-target="#modalTambahBarangKeluar">
+									<span class="btn-label">
+										<i class="fa fa-plus"></i>
+									</span>
+									Tambah Data
+								</button>
+
 								<a href="/tambahkeluar">
 									<button class="btn btn-primary">
 										<span class="btn-label">
@@ -87,6 +96,7 @@
 											Kirim Data
 										</button>
 								
+ master
 							</div>
 
 						</div>
@@ -100,13 +110,21 @@
 									<h4 class="card-title">Data Barang Keluar</h4>
 								</div>
 								<div class="card-body">
+									<!-- Tabel Barang Keluar -->
 									<div class="table-responsive">
 										<table id="basic-datatables" class="display table table-striped table-hover text-center">
 											<thead class="table-dark">
 												<tr>
 													<th>No</th>
-													<th>ID Barang</th>
 													<th>Nama Barang</th>
+ fitur-adan
+													<th>Jumlah</th>
+													<th>Tanggal Keluar</th>
+													<th>Keterangan</th>
+													<th>Aksi</th>
+												</tr>
+											</thead>
+
 													<th>Stok</th>
 													 
 													<th>Satuan</th>
@@ -124,59 +142,194 @@
 													<th>Aksi</th>
 												</tr>
 											</tfoot>
+ master
 											<tbody>
+												@foreach($barangkeluar as $i => $item)
 												<tr>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													 
-													<td class="action-buttons">
-														<button class="btn btn-sm btn-warning">
-															<i class="fas fa-edit"></i> Edit
-														</button>
-														<button class="btn btn-sm btn-danger">
-															<i class="fas fa-trash-alt"></i> Hapus
-														</button>
-													</td>
-												</tr>
-												<tr>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													 
-													<td class="action-buttons">
-														<button class="btn btn-sm btn-warning">
-															<i class="fas fa-edit"></i> Edit
-														</button>
-														<button class="btn btn-sm btn-danger">
-															<i class="fas fa-trash-alt"></i> Hapus
-														</button>
-													</td>
-												</tr>
-												<tr>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													 
-													<td class="action-buttons">
-														<button class="btn btn-sm btn-warning">
-															<i class="fas fa-edit"></i> Edit
-														</button>
-														<button class="btn btn-sm btn-danger">
-															<i class="fas fa-trash-alt"></i> Hapus
-														</button>
-													</td>
-												</tr>
+fitur-adan
+													<td>{{ $i+1 }}</td>
+													<td>{{ $item->nama_barang }}</td>
+													<td>{{ $item->jumlah }}</td>
+													<td>{{ $item->tanggal_keluar }}</td>
+													<td>{{ $item->keterangan }}</td>
+													<td>
+														<form action="{{ route('barangkeluar.destroy', $item->id) }}" method="POST" style="display:inline-block">
+															@csrf
+															@method('DELETE')
+															<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin hapus?')">
+																<i class="fa fa-trash"></i> Hapus
+															</button>
+														</form>
+														<!-- Tombol Edit -->
+														<button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalEditBarangKeluar{{ $item->id }}">
+															<i class="fa fa-edit"></i> Edit
 
+													<td>-</td>
+													<td>-</td>
+													<td>-</td>
+													<td>-</td>
+													<td>-</td>
+													 
+													<td class="action-buttons">
+														<button class="btn btn-sm btn-warning">
+															<i class="fas fa-edit"></i> Edit
+														</button>
+														<button class="btn btn-sm btn-danger">
+															<i class="fas fa-trash-alt"></i> Hapus
+														</button>
+													</td>
+												</tr>
+												<tr>
+													<td>-</td>
+													<td>-</td>
+													<td>-</td>
+													<td>-</td>
+													<td>-</td>
+													 
+													<td class="action-buttons">
+														<button class="btn btn-sm btn-warning">
+															<i class="fas fa-edit"></i> Edit
+														</button>
+														<button class="btn btn-sm btn-danger">
+															<i class="fas fa-trash-alt"></i> Hapus
+														</button>
+													</td>
+												</tr>
+												<tr>
+													<td>-</td>
+													<td>-</td>
+													<td>-</td>
+													<td>-</td>
+													<td>-</td>
+													 
+													<td class="action-buttons">
+														<button class="btn btn-sm btn-warning">
+															<i class="fas fa-edit"></i> Edit
+ master
+														</button>
+														@if($item->gambar)
+														<button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalPreviewGambar{{ $item->id }}">
+															<i class="fa fa-image"></i> Lihat Gambar
+														</button>
+														<!-- Modal Preview Gambar -->
+														<div class="modal fade" id="modalPreviewGambar{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="modalPreviewGambarLabel{{ $item->id }}" aria-hidden="true">
+															<div class="modal-dialog modal-dialog-centered" role="document">
+																<div class="modal-content">
+																	<div class="modal-header">
+																		<h5 class="modal-title" id="modalPreviewGambarLabel{{ $item->id }}">Preview Gambar</h5>
+																		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																			<span aria-hidden="true">&times;</span>
+																		</button>
+																	</div>
+																	<div class="modal-body text-center">
+																		<img src="{{ asset('storage/' . $item->gambar) }}" alt="Gambar" class="img-fluid mb-3" style="max-height:400px;">
+																		<br>
+																		<a href="{{ asset('storage/' . $item->gambar) }}" download class="btn btn-success">
+																			<i class="fa fa-download"></i> Download
+																		</a>
+																	</div>
+																</div>
+															</div>
+														</div>
+														@else
+														-
+														@endif
+													</td>
+												</tr>
+												<!-- Modal Edit Barang Keluar -->
+												<div class="modal fade" id="modalEditBarangKeluar{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="modalEditBarangKeluarLabel{{ $item->id }}" aria-hidden="true">
+													<div class="modal-dialog" role="document">
+														<div class="modal-content">
+															<div class="modal-header">
+																<h5 class="modal-title" id="modalEditBarangKeluarLabel{{ $item->id }}">Edit Barang Keluar</h5>
+																<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																	<span aria-hidden="true">&times;</span>
+																</button>
+															</div>
+															<form action="{{ route('barangkeluar.update', $item->id) }}" method="POST" enctype="multipart/form-data">
+																@csrf
+																@method('PUT')
+																<div class="modal-body">
+																	<div class="form-group">
+																		<label for="nama_barang{{ $item->id }}">Nama Barang</label>
+																		<input type="text" class="form-control" id="nama_barang{{ $item->id }}" name="nama_barang" value="{{ $item->nama_barang }}" required>
+																	</div>
+																	<div class="form-group">
+																		<label for="jumlah{{ $item->id }}">Jumlah</label>
+																		<input type="number" class="form-control" id="jumlah{{ $item->id }}" name="jumlah" value="{{ $item->jumlah }}" min="1" required>
+																	</div>
+																	<div class="form-group">
+																		<label for="tanggal_keluar{{ $item->id }}">Tanggal Keluar</label>
+																		<input type="date" class="form-control" id="tanggal_keluar{{ $item->id }}" name="tanggal_keluar" value="{{ $item->tanggal_keluar }}" required>
+																	</div>
+																	<div class="form-group">
+																		<label for="keterangan{{ $item->id }}">Keterangan</label>
+																		<input type="text" class="form-control" id="keterangan{{ $item->id }}" name="keterangan" value="{{ $item->keterangan }}">
+																	</div>
+																	<div class="form-group">
+																		<label for="gambar{{ $item->id }}">Upload Gambar</label>
+																		<input type="file" class="form-control-file" id="gambar{{ $item->id }}" name="gambar" accept="image/*" capture="environment">
+																		@if($item->gambar)
+																			<br><img src="{{ asset('storage/' . $item->gambar) }}" alt="Gambar" class="img-fluid mt-2" style="max-height:100px;">
+																		@endif
+																	</div>
+																</div>
+																<div class="modal-footer">
+																	<button type="submit" class="btn btn-success">Update</button>
+																	<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+																</div>
+															</form>
+														</div>
+													</div>
+												</div>
+												@endforeach
 											</tbody>
 										</table>
 									</div>
+
+									<!-- Modal Tambah Barang Keluar -->
+									<div class="modal fade" id="modalTambahBarangKeluar" tabindex="-1" role="dialog" aria-labelledby="modalTambahBarangKeluarLabel" aria-hidden="true">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title" id="modalTambahBarangKeluarLabel">Tambah Barang Keluar</h5>
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+												</div>
+												<form action="{{ route('barangkeluar.store') }}" method="POST" enctype="multipart/form-data">
+													@csrf
+													<div class="modal-body">
+														<div class="form-group">
+															<label for="nama_barang">Nama Barang</label>
+															<input type="text" class="form-control" id="nama_barang" name="nama_barang" placeholder="Masukkan Nama Barang" required>
+														</div>
+														<div class="form-group">
+															<label for="jumlah">Jumlah</label>
+															<input type="number" class="form-control" id="jumlah" name="jumlah" min="1" required>
+														</div>
+														<div class="form-group">
+															<label for="tanggal_keluar">Tanggal Keluar</label>
+															<input type="date" class="form-control" id="tanggal_keluar" name="tanggal_keluar" required>
+														</div>
+														<div class="form-group">
+															<label for="keterangan">Keterangan</label>
+															<input type="text" class="form-control" id="keterangan" name="keterangan">
+														</div>
+														<div class="form-group">
+															<label for="gambar">Upload Gambar</label>
+															<input type="file" class="form-control-file" id="gambar" name="gambar" accept="image/*" capture="environment">
+														</div>
+													</div>
+													<div class="modal-footer">
+														<button type="submit" class="btn btn-success">Submit</button>
+														<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+
 								</div>
 							</div>
 						</div>
