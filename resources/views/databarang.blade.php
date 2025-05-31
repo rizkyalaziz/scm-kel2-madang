@@ -104,70 +104,126 @@
 													<th>No</th>
 													<th>ID Barang</th>
 													<th>Nama Barang</th>
-													<th>Stok</th>
+													<th>Kode</th>
+													<th>Kategori</th>
+													<th>Jenis</th>
+													<th>Stok Minimum</th>
 													<th>Satuan</th>
+													<th>Gambar</th>
 													<th>Aksi</th>
 												</tr>
 											</thead>
-											<tfoot>
-												<tr>
-													<th>No</th>
-													<th>ID Barang</th>
-													<th>Nama Barang</th>
-													<th>Stok</th>
-													<th>Satuan</th>
-													<th>Aksi</th>
-												</tr>
-											</tfoot>
 											<tbody>
+												@foreach($barang as $i => $item)
 												<tr>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													
-													<td class="action-buttons">
-														<button class="btn btn-sm btn-warning">
-															<i class="fas fa-edit"></i> Edit
-														</button>
-														<button class="btn btn-sm btn-danger">
-															<i class="fas fa-trash-alt"></i> Hapus
+													<td>{{ $i+1 }}</td>
+													<td>{{ $item->id_barang }}</td>
+													<td>{{ $item->nama }}</td>
+													<td>{{ $item->kode }}</td>
+													<td>{{ $item->kategori->nama ?? '-' }}</td>
+													<td>{{ $item->jenis->nama ?? '-' }}</td>
+													<td>{{ $item->stok_minimum }}</td>
+													<td>{{ $item->satuan->nama ?? '-' }}</td>
+													<td>
+														@if($item->gambar)
+															<img src="{{ asset('storage/' . $item->gambar) }}" width="50"/>
+														@else
+															-
+														@endif
+													</td>
+													<td>
+														<form action="{{ route('databarang.destroy', $item->id) }}" method="POST" style="display:inline-block">
+															@csrf
+															@method('DELETE')
+															<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin hapus?')">
+																<i class="fa fa-trash"></i> Hapus
+															</button>
+														</form>
+														<button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalEditBarang{{ $item->id }}">
+															<i class="fa fa-edit"></i> Edit
 														</button>
 													</td>
 												</tr>
-												<tr>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													
-													<td class="action-buttons">
-														<button class="btn btn-sm btn-warning">
-															<i class="fas fa-edit"></i> Edit
-														</button>
-														<button class="btn btn-sm btn-danger">
-															<i class="fas fa-trash-alt"></i> Hapus
-														</button>
-													</td>
-												</tr>
-												<tr>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													<td class="action-buttons">
-														<button class="btn btn-sm btn-warning">
-															<i class="fas fa-edit"></i> Edit
-														</button>
-														<button class="btn btn-sm btn-danger">
-															<i class="fas fa-trash-alt"></i> Hapus
-														</button>
-													</td>
-												</tr>
-
+												<!-- Modal Edit Barang -->
+												<div class="modal fade" id="modalEditBarang{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="modalEditBarangLabel{{ $item->id }}" aria-hidden="true">
+												  <div class="modal-dialog modal-lg" role="document">
+												    <div class="modal-content">
+												      <div class="modal-header">
+												        <h5 class="modal-title" id="modalEditBarangLabel{{ $item->id }}">Edit Data Barang</h5>
+												        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												          <span aria-hidden="true">&times;</span>
+												        </button>
+												      </div>
+												      <form action="{{ route('databarang.update', $item->id) }}" method="POST" enctype="multipart/form-data">
+												        @csrf
+												        @method('PUT')
+												        <div class="modal-body">
+												          <div class="row">
+												            <div class="col-md-7 col-lg-7">
+												              <div class="form-group">
+												                <label for="editIdBarang{{ $item->id }}">ID Barang</label>
+												                <input type="text" class="form-control" id="editIdBarang{{ $item->id }}" name="id_barang" value="{{ $item->id_barang }}" required>
+												              </div>
+												              <div class="form-group">
+												                <label for="editNamaBarang{{ $item->id }}">Nama Barang</label>
+												                <input type="text" class="form-control" id="editNamaBarang{{ $item->id }}" name="nama" value="{{ $item->nama }}" required>
+												              </div>
+												              <div class="form-group">
+												                <label for="editKodeBarang{{ $item->id }}">Kode Barang</label>
+												                <input type="text" class="form-control" id="editKodeBarang{{ $item->id }}" name="kode" value="{{ $item->kode }}" required>
+												              </div>
+												              <div class="form-group">
+												                <label for="editKategoriBarang{{ $item->id }}">Kategori Barang</label>
+												                <select class="form-control" id="editKategoriBarang{{ $item->id }}" name="kategori_id" required>
+												                  <option value="">-- Kategori --</option>
+												                  @foreach($kategori as $kat)
+												                    <option value="{{ $kat->id }}" {{ $item->kategori_id == $kat->id ? 'selected' : '' }}>{{ $kat->nama }}</option>
+												                  @endforeach
+												                </select>
+												              </div>
+												              <div class="form-group">
+												                <label for="editJenisBarang{{ $item->id }}">Jenis Barang</label>
+												                <select class="form-control" id="editJenisBarang{{ $item->id }}" name="jenis_id" required>
+												                  <option value="">-- Jenis --</option>
+												                  @foreach($jenis as $jns)
+												                    <option value="{{ $jns->id }}" {{ $item->jenis_id == $jns->id ? 'selected' : '' }}>{{ $jns->nama }}</option>
+												                  @endforeach
+												                </select>
+												              </div>
+												              <div class="form-group">
+												                <label for="editStock{{ $item->id }}">Stock Minimum</label>
+												                <input type="number" class="form-control" id="editStock{{ $item->id }}" name="stok_minimum" value="{{ $item->stok_minimum }}" required>
+												              </div>
+												              <div class="form-group">
+												                <label for="editSatuan{{ $item->id }}">Satuan</label>
+												                <select class="form-control" id="editSatuan{{ $item->id }}" name="satuan_id" required>
+												                  <option value="">-- Satuan --</option>
+												                  @foreach($satuan as $sat)
+												                    <option value="{{ $sat->id }}" {{ $item->satuan_id == $sat->id ? 'selected' : '' }}>{{ $sat->nama }}</option>
+												                  @endforeach
+												                </select>
+												              </div>
+												            </div>
+												            <div class="col-md-5 col-lg-5">
+												              <div class="form-group">
+												                <label for="editGambar{{ $item->id }}">Upload Gambar</label>
+												                <input type="file" class="form-control-file" id="editGambar{{ $item->id }}" name="gambar">
+												                @if($item->gambar)
+												                  <img src="{{ asset('storage/' . $item->gambar) }}" width="50"/>
+												                @endif
+												              </div>
+												            </div>
+												          </div>
+												        </div>
+												        <div class="modal-footer">
+												          <button type="submit" class="btn btn-success">Update</button>
+												          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+												        </div>
+												      </form>
+												    </div>
+												  </div>
+												</div>
+												@endforeach
 											</tbody>
 										</table>
 									</div>
@@ -258,43 +314,59 @@
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
-	      <form>
+	      <form action="{{ route('databarang.store') }}" method="POST" enctype="multipart/form-data">
+	        @csrf
 	        <div class="modal-body">
 	          <div class="row">
 	            <div class="col-md-7 col-lg-7">
 	              <div class="form-group">
 	                <label for="idBarang">ID Barang</label>
-	                <input type="tel" class="form-control" id="idBarang" placeholder="Masukkan ID Barang">
+	                <input type="text" class="form-control" id="idBarang" name="id_barang" placeholder="Masukkan ID Barang" required>
 	              </div>
 	              <div class="form-group">
 	                <label for="namaBarang">Nama Barang</label>
-	                <input type="text" class="form-control" id="namaBarang" placeholder="Masukkan Nama Barang">
+	                <input type="text" class="form-control" id="namaBarang" name="nama" placeholder="Masukkan Nama Barang" required>
 	              </div>
 	              <div class="form-group">
 	                <label for="kodeBarang">Kode Barang</label>
-	                <select class="form-control" id="kodeBarang">
-	                  <option>-- Kode --</option>
-	                </select>
+	                <input type="text" class="form-control" id="kodeBarang" name="kode" placeholder="Masukkan Kode Barang" required>
 	              </div>
 	              <div class="form-group">
 	                <label for="kategoriBarang">Kategori Barang</label>
-	                <select class="form-control" id="kategoriBarang">
-	                  <option>-- Kategori --</option>
+	                <select class="form-control" id="kategoriBarang" name="kategori_id" required>
+	                  <option value="">-- Kategori --</option>
+	                  @foreach($kategori as $kat)
+	                    <option value="{{ $kat->id }}">{{ $kat->nama }}</option>
+	                  @endforeach
+	                </select>
+	              </div>
+	              <div class="form-group">
+	                <label for="jenisBarang">Jenis Barang</label>
+	                <select class="form-control" id="jenisBarang" name="jenis_id" required>
+	                  <option value="">-- Jenis --</option>
+	                  @foreach($jenis as $jns)
+	                    <option value="{{ $jns->id }}">{{ $jns->nama }}</option>
+	                  @endforeach
 	                </select>
 	              </div>
 	              <div class="form-group">
 	                <label for="stock">Stock Minimum</label>
-	                <input type="tel" class="form-control" id="stock" placeholder="Masukkan Minimum Barang">
+	                <input type="number" class="form-control" id="stock" name="stok_minimum" placeholder="Masukkan Minimum Barang" required>
 	              </div>
 	              <div class="form-group">
 	                <label for="satuan">Satuan</label>
-	                <input type="tel" class="form-control" id="satuan" placeholder="Masukkan Satuan Barang">
+	                <select class="form-control" id="satuan" name="satuan_id" required>
+	                  <option value="">-- Satuan --</option>
+	                  @foreach($satuan as $sat)
+	                    <option value="{{ $sat->id }}">{{ $sat->nama }}</option>
+	                  @endforeach
+	                </select>
 	              </div>
 	            </div>
 	            <div class="col-md-5 col-lg-5">
 	              <div class="form-group">
 	                <label for="exampleFormControlFile1">Upload Gambar</label>
-	                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+	                <input type="file" class="form-control-file" id="exampleFormControlFile1" name="gambar">
 	              </div>
 	            </div>
 	          </div>

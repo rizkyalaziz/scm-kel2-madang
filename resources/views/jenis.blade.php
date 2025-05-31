@@ -92,7 +92,7 @@
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">
-										<table id="basic-datatables" class="display table table-striped table-hover text-center" >
+										<table id="basic-datatables" class="display table table-striped table-hover text-center">
 											<thead class="table-dark">
 												<tr>
 													<th>No</th>
@@ -101,38 +101,57 @@
 													<th>Aksi</th>
 												</tr>
 											</thead>
-											<tfoot>
-												<tr>
-													<th>No</th>
-													<th>Kode Barang</th>
-													<th>Jenis Barang</th>
-													<th>Aksi</th>
-													 
-												</tr>
-											</tfoot>
 											<tbody>
+												@foreach($jenis as $i => $item)
 												<tr>
-													<td>1</td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													 
+													<td>{{ $i+1 }}</td>
+													<td>{{ $item->kode }}</td>
+													<td>{{ $item->nama }}</td>
+													<td>
+														<form action="{{ route('jenis.destroy', $item->id) }}" method="POST" style="display:inline-block">
+															@csrf
+															@method('DELETE')
+															<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin hapus?')">
+																<i class="fa fa-trash"></i> Hapus
+															</button>
+														</form>
+														<button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalEditJenis{{ $item->id }}">
+															<i class="fa fa-edit"></i> Edit
+														</button>
+													</td>
 												</tr>
-												<tr>
-													<td>2</td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													 
-												</tr>
-												<tr>
-													<td>3</td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													 
-												</tr>
-												 
+												<!-- Modal Edit Jenis -->
+												<div class="modal fade" id="modalEditJenis{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="modalEditJenisLabel{{ $item->id }}" aria-hidden="true">
+												  <div class="modal-dialog" role="document">
+												    <div class="modal-content">
+												      <div class="modal-header">
+												        <h5 class="modal-title" id="modalEditJenisLabel{{ $item->id }}">Edit Jenis</h5>
+												        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												          <span aria-hidden="true">&times;</span>
+												        </button>
+												      </div>
+												      <form action="{{ route('jenis.update', $item->id) }}" method="POST">
+												        @csrf
+												        @method('PUT')
+												        <div class="modal-body">
+												          <div class="form-group">
+												            <label for="editKodeBarang{{ $item->id }}">Kode Barang</label>
+												            <input type="text" class="form-control" id="editKodeBarang{{ $item->id }}" name="kode" value="{{ $item->kode }}" required>
+												          </div>
+												          <div class="form-group">
+												            <label for="editJenisBarang{{ $item->id }}">Jenis Barang</label>
+												            <input type="text" class="form-control" id="editJenisBarang{{ $item->id }}" name="nama" value="{{ $item->nama }}" required>
+												          </div>
+												        </div>
+												        <div class="modal-footer">
+												          <button type="submit" class="btn btn-success">Update</button>
+												          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+												        </div>
+												      </form>
+												    </div>
+												  </div>
+												</div>
+												@endforeach
 											</tbody>
 										</table>
 									</div>
@@ -223,15 +242,16 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form>
+      <form action="{{ route('jenis.store') }}" method="POST">
+        @csrf
         <div class="modal-body">
           <div class="form-group">
             <label for="kodeBarang">Kode Barang</label>
-            <input type="text" class="form-control" id="kodeBarang" placeholder="Masukkan Kode Barang">
+            <input type="text" class="form-control" id="kodeBarang" name="kode" placeholder="Masukkan Kode Barang" required>
           </div>
           <div class="form-group">
             <label for="jenisBarang">Jenis Barang</label>
-            <input type="text" class="form-control" id="jenisBarang" placeholder="Masukkan Jenis Barang">
+            <input type="text" class="form-control" id="jenisBarang" name="nama" placeholder="Masukkan Jenis Barang" required>
           </div>
         </div>
         <div class="modal-footer">

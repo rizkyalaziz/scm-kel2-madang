@@ -91,7 +91,7 @@
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">
-										<table id="basic-datatables" class="display table table-striped table-hover text-center" >
+										<table id="basic-datatables" class="display table table-striped table-hover text-center">
 											<thead class="table-dark">
 												<tr>
 													<th>No</th>
@@ -99,34 +99,80 @@
 													<th>Aksi</th>
 												</tr>
 											</thead>
-											<tfoot>
-												<tr>
-													<th>No</th>
-													<th>Satuan Barang</th>
-													<th>Aksi</th>
-												</tr>
-											</tfoot>
 											<tbody>
+												@foreach($satuan as $i => $item)
 												<tr>
-													<td>1</td>
-													<td>-</td>
-													<td>-</td>
-													
+													<td>{{ $i+1 }}</td>
+													<td>{{ $item->nama }}</td>
+													<td>
+														<form action="{{ route('satuan.destroy', $item->id) }}" method="POST" style="display:inline-block">
+															@csrf
+															@method('DELETE')
+															<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin hapus?')">
+																<i class="fa fa-trash"></i> Hapus
+															</button>
+														</form>
+														<button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalEditSatuan{{ $item->id }}">
+															<i class="fa fa-edit"></i> Edit
+														</button>
+													</td>
 												</tr>
-												<tr>
-													<td>2</td>
-													<td>-</td>
-													<td>-</td>
-													
-												</tr>
-												<tr>
-													<td>3</td>
-													<td>-</td>
-													<td>-</td>
-													
-												</tr>
+												<!-- Modal Edit Satuan -->
+												<div class="modal fade" id="modalEditSatuan{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="modalEditSatuanLabel{{ $item->id }}" aria-hidden="true">
+												  <div class="modal-dialog" role="document">
+												    <div class="modal-content">
+												      <div class="modal-header">
+												        <h5 class="modal-title" id="modalEditSatuanLabel{{ $item->id }}">Edit Satuan</h5>
+												        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												          <span aria-hidden="true">&times;</span>
+												        </button>
+												      </div>
+												      <form action="{{ route('satuan.update', $item->id) }}" method="POST">
+												        @csrf
+												        @method('PUT')
+												        <div class="modal-body">
+												          <div class="form-group">
+												            <label for="editSatuanBarang{{ $item->id }}">Satuan Barang</label>
+												            <input type="text" class="form-control" id="editSatuanBarang{{ $item->id }}" name="nama" value="{{ $item->nama }}" required>
+												          </div>
+												        </div>
+												        <div class="modal-footer">
+												          <button type="submit" class="btn btn-success">Update</button>
+												          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+												        </div>
+												      </form>
+												    </div>
+												  </div>
+												</div>
+												@endforeach
 											</tbody>
 										</table>
+									</div>
+									<!-- Modal Tambah Satuan -->
+									<div class="modal fade" id="modalTambahSatuan" tabindex="-1" role="dialog" aria-labelledby="modalTambahSatuanLabel" aria-hidden="true">
+									  <div class="modal-dialog" role="document">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <h5 class="modal-title" id="modalTambahSatuanLabel">Tambah Satuan</h5>
+									        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									          <span aria-hidden="true">&times;</span>
+									        </button>
+									      </div>
+									      <form action="{{ route('satuan.store') }}" method="POST">
+									        @csrf
+									        <div class="modal-body">
+									          <div class="form-group">
+									            <label for="satuanBarang">Satuan Barang</label>
+									            <input type="text" class="form-control" id="satuanBarang" name="nama" placeholder="Masukkan Satuan Barang" required>
+									          </div>
+									        </div>
+									        <div class="modal-footer">
+									          <button type="submit" class="btn btn-success">Submit</button>
+									          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+									        </div>
+									      </form>
+									    </div>
+									  </div>
 									</div>
 								</div>
 							</div>
@@ -205,30 +251,5 @@
 		});
 	</script>
 
-	<!-- Modal Tambah Satuan -->
-	<div class="modal fade" id="modalTambahSatuan" tabindex="-1" role="dialog" aria-labelledby="modalTambahSatuanLabel" aria-hidden="true">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="modalTambahSatuanLabel">Tambah Satuan</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <form>
-	        <div class="modal-body">
-	          <div class="form-group">
-	            <label for="satuanBarang">Satuan Barang</label>
-	            <input type="text" class="form-control" id="satuanBarang" placeholder="Masukkan Satuan Barang">
-	          </div>
-	        </div>
-	        <div class="modal-footer">
-	          <button type="submit" class="btn btn-success">Submit</button>
-	          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-	        </div>
-	      </form>
-	    </div>
-	  </div>
-	</div>
 </body>
 </html>
