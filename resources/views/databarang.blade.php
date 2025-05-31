@@ -49,7 +49,7 @@
 					<div class="page-inner py-5">
 						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
 							<div class="page-header">
-								<h4 class="page-title text-white"><i class="fas fa-home pr-2"></i>Data Barang</h4>
+								<h4 class="page-title text-white"><i class="fas fa-database pr-2"></i>Data Barang</h4>
 								<ul class="breadcrumbs">
 									<li class="nav-home">
 										<a href="#">
@@ -72,18 +72,18 @@
 							</div>
 
 							<div class="ml-md-auto py-2 py-md-0">
-								<button class="btn btn-primary" data-toggle="modal" data-target="#modalTambahBarang">
+								<button class="btn btn-primary mr-3 rounded-2" data-toggle="modal" data-target="#modalTambahBarang">
 									<span class="btn-label">
 										<i class="fa fa-plus"></i>
 									</span>
 									Tambah Data
 								</button>
 								<button class="btn btn-success">
-										<span class="btn-label">
-											<i class="fa fa-check"></i>
-										</span>
-										Kirim Data
-									</button>
+									<span class="btn-label">
+										<i class="fa fa-check"></i>
+									</span>
+									Kirim Data
+								</button>
 							</div>
 
 						</div>
@@ -98,7 +98,8 @@
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">
-										<table id="basic-datatables" class="display table table-striped table-hover text-center">
+										<table id="basic-datatables"
+											class="display table table-striped table-hover text-center">
 											<thead class="table-dark">
 												<tr>
 													<th>No</th>
@@ -116,6 +117,7 @@
 											<tbody>
 												@foreach($barang as $i => $item)
 												<tr>
+fitur-adan
 													<td>{{ $i+1 }}</td>
 													<td>{{ $item->id_barang }}</td>
 													<td>{{ $item->nama }}</td>
@@ -141,6 +143,36 @@
 														</form>
 														<button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalEditBarang{{ $item->id }}">
 															<i class="fa fa-edit"></i> Edit
+
+													<td>-</td>
+													<td>-</td>
+													<td>-</td>
+													<td>-</td>
+													<td>-</td>
+
+													<td class="action-buttons">
+														<button class="btn btn-sm btn-warning">
+															<i class="fas fa-edit"></i> Edit
+														</button>
+														<button class="btn btn-sm btn-danger">
+															<i class="fas fa-trash-alt"></i> Hapus
+														</button>
+													</td>
+												</tr>
+												<tr>
+													<td>-</td>
+													<td>-</td>
+													<td>-</td>
+													<td>-</td>
+													<td>-</td>
+
+													<td class="action-buttons">
+														<button class="btn btn-sm btn-warning">
+															<i class="fas fa-edit"></i> Edit
+														</button>
+														<button class="btn btn-sm btn-danger">
+															<i class="fas fa-trash-alt"></i> Hapus
+ master
 														</button>
 													</td>
 												</tr>
@@ -305,6 +337,7 @@
 	</script>
 
 	<!-- Modal Tambah Barang -->
+ fitur-adan
 	<div class="modal fade" id="modalTambahBarang" tabindex="-1" role="dialog" aria-labelledby="modalTambahBarangLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-lg" role="document">
 	    <div class="modal-content">
@@ -378,6 +411,70 @@
 	      </form>
 	    </div>
 	  </div>
+
+	<div class="modal fade" id="modalTambahBarang" tabindex="-1" role="dialog" aria-labelledby="modalTambahBarangLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modalTambahBarangLabel">Tambah Data Barang</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md-7 col-lg-7">
+								<div class="form-group">
+									<label for="idBarang">ID Barang</label>
+									<input type="tel" class="form-control" id="idBarang"
+										placeholder="Masukkan ID Barang">
+								</div>
+								<div class="form-group">
+									<label for="namaBarang">Nama Barang</label>
+									<input type="text" class="form-control" id="namaBarang"
+										placeholder="Masukkan Nama Barang">
+								</div>
+								<div class="form-group">
+									<label for="kodeBarang">Kode Barang</label>
+									<select class="form-control" id="kodeBarang">
+										<option>-- Kode --</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="kategoriBarang">Kategori Barang</label>
+									<select class="form-control" id="kategoriBarang">
+										<option>-- Kategori --</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="stock">Stock Minimum</label>
+									<input type="tel" class="form-control" id="stock"
+										placeholder="Masukkan Minimum Barang">
+								</div>
+								<div class="form-group">
+									<label for="satuan">Satuan</label>
+									<input type="tel" class="form-control" id="satuan"
+										placeholder="Masukkan Satuan Barang">
+								</div>
+							</div>
+							<div class="col-md-5 col-lg-5">
+								<div class="form-group">
+									<label for="exampleFormControlFile1">Upload Gambar</label>
+									<input type="file" class="form-control-file" id="exampleFormControlFile1">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-success">Submit</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+					</div>
+				</form>
+			</div>
+		</div>
+master
 	</div>
 </body>
 

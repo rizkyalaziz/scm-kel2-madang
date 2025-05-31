@@ -41,7 +41,7 @@
 
 		<!-- Sidebar -->
 		<x-keluar></x-keluar>
-		<!-- Sidebar-->
+		<!-- End Sidebar -->
 
 		<div class="main-panel">
 			<div class="content">
@@ -49,7 +49,7 @@
 					<div class="page-inner py-5">
 						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
 							<div class="page-header">
-								<h4 class="page-title text-white"><i class="fas fa-home pr-2"></i>Data Barang Keluar</h4>
+								<h4 class="page-title text-white"><i class="fas fa-sign-out-alt"></i> Barang Keluar</h4>
 								<ul class="breadcrumbs">
 									<li class="nav-home">
 										<a href="#">
@@ -60,7 +60,7 @@
 										<i class="flaticon-right-arrow"></i>
 									</li>
 									<li class="nav-item text-white">
-										<a href="#" class="text-white">Data Barang</a>
+										<a href="#" class="text-white">Data Barang Keluar</a>
 									</li>
 									<li class="separator text-white">
 										<i class="flaticon-right-arrow"></i>
@@ -73,12 +73,30 @@
 
 							<!-- Tombol untuk memunculkan modal -->
 							<div class="ml-md-auto py-2 py-md-0">
+fitur-adan
 								<button class="btn btn-secondary" data-toggle="modal" data-target="#modalTambahBarangKeluar">
 									<span class="btn-label">
 										<i class="fa fa-plus"></i>
 									</span>
 									Tambah Data
 								</button>
+
+								<a href="/tambahkeluar">
+									<button class="btn btn-primary">
+										<span class="btn-label">
+											<i class="fa fa-plus"></i>
+										</span>
+										Tambah Data
+									</button>
+								</a>
+                                    <button class="btn btn-success">
+											<span class="btn-label">
+												<i class="fa fa-check"></i>
+											</span>
+											Kirim Data
+										</button>
+								
+ master
 							</div>
 
 						</div>
@@ -89,7 +107,7 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title">Data Barang</h4>
+									<h4 class="card-title">Data Barang Keluar</h4>
 								</div>
 								<div class="card-body">
 									<!-- Tabel Barang Keluar -->
@@ -99,15 +117,36 @@
 												<tr>
 													<th>No</th>
 													<th>Nama Barang</th>
+ fitur-adan
 													<th>Jumlah</th>
 													<th>Tanggal Keluar</th>
 													<th>Keterangan</th>
 													<th>Aksi</th>
 												</tr>
 											</thead>
+
+													<th>Stok</th>
+													 
+													<th>Satuan</th>
+													<th>Aksi</th>
+												</tr>
+											</thead>
+											<tfoot>
+												<tr>
+													<th>No</th>
+													<th>ID Barang</th>
+													<th>Nama Barang</th>
+													<th>Stok</th>
+													 
+													<th>Satuan</th>
+													<th>Aksi</th>
+												</tr>
+											</tfoot>
+ master
 											<tbody>
 												@foreach($barangkeluar as $i => $item)
 												<tr>
+fitur-adan
 													<td>{{ $i+1 }}</td>
 													<td>{{ $item->nama_barang }}</td>
 													<td>{{ $item->jumlah }}</td>
@@ -124,6 +163,49 @@
 														<!-- Tombol Edit -->
 														<button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalEditBarangKeluar{{ $item->id }}">
 															<i class="fa fa-edit"></i> Edit
+
+													<td>-</td>
+													<td>-</td>
+													<td>-</td>
+													<td>-</td>
+													<td>-</td>
+													 
+													<td class="action-buttons">
+														<button class="btn btn-sm btn-warning">
+															<i class="fas fa-edit"></i> Edit
+														</button>
+														<button class="btn btn-sm btn-danger">
+															<i class="fas fa-trash-alt"></i> Hapus
+														</button>
+													</td>
+												</tr>
+												<tr>
+													<td>-</td>
+													<td>-</td>
+													<td>-</td>
+													<td>-</td>
+													<td>-</td>
+													 
+													<td class="action-buttons">
+														<button class="btn btn-sm btn-warning">
+															<i class="fas fa-edit"></i> Edit
+														</button>
+														<button class="btn btn-sm btn-danger">
+															<i class="fas fa-trash-alt"></i> Hapus
+														</button>
+													</td>
+												</tr>
+												<tr>
+													<td>-</td>
+													<td>-</td>
+													<td>-</td>
+													<td>-</td>
+													<td>-</td>
+													 
+													<td class="action-buttons">
+														<button class="btn btn-sm btn-warning">
+															<i class="fas fa-edit"></i> Edit
+ master
 														</button>
 														@if($item->gambar)
 														<button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalPreviewGambar{{ $item->id }}">

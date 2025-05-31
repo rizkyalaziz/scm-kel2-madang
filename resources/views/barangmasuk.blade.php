@@ -49,7 +49,7 @@
 					<div class="page-inner py-5">
 						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
 							<div class="page-header">
-								<h4 class="page-title text-white"><i class="fas fa-home pr-2"></i>Data Barang Masuk</h4>
+								<h4 class="page-title text-white"><i class="fas fa-sign-in-alt"></i> Barang Masuk</h4>
 								<ul class="breadcrumbs">
 									<li class="nav-home">
 										<a href="#">
@@ -72,12 +72,22 @@
 							</div>
 
 							<div class="ml-md-auto py-2 py-md-0">
+ fitur-adan
 								<button class="btn btn-primary" data-toggle="modal" data-target="#modalTambahBarangMasuk">
 									<span class="btn-label">
 										<i class="fa fa-plus"></i>
 									</span>
 									Tambah Data
 								</button>
+
+                                    <button class="btn btn-success">
+											<span class="btn-label">
+												<i class="fa fa-check"></i>
+											</span>
+											Kirim Data
+										</button>
+								</a>
+ master
 							</div>
 
 						</div>
@@ -88,7 +98,7 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title">Data Barang</h4>
+									<h4 class="card-title">Data Barang Masuk</h4>
 								</div>
 								<div class="card-body">
 									<!-- Modal Tambah Barang Masuk -->

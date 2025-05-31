@@ -30,13 +30,13 @@
 					</span>
 					<h4 class="text-section">Master</h4>
 				</li>
-				<li class="nav-item active submenu">
+				<li class="nav-item">
 					<a data-toggle="collapse" href="#base">
 						<i class="fas fa-database"></i>
 						<p>Stock Barang</p>
 						<span class="caret"></span>
 					</a>
-					<div class="collapse show" id="base">
+					<div class="collapse" id="base">
 						<ul class="nav nav-collapse">
 							<li>
 								<a href="/databarang">
@@ -53,7 +53,6 @@
 									<span class="sub-item">Jenis Barang</span>
 								</a>
 							</li>
-
 							<li>
 								<a href="/satuan">
 									<span class="sub-item">Satuan</span>
@@ -87,13 +86,13 @@
 					</span>
 					<h4 class="text-section">Laporan</h4>
 				</li>
-				<li class="nav-item">
+				<li class="nav-item active submenu">
 					<a data-toggle="collapse" href="#bose">
 						<i class="fas fa-file-alt"></i>
 						<p>Data Laporan Barang</p>
 						<span class="caret"></span>
 					</a>
-					<div class="collapse" id="bose">
+					<div class="collapse show" id="bose">
 						<ul class="nav nav-collapse">
 							<li>
 								<a href="/laporan-masuk">
@@ -105,9 +104,8 @@
 									<span class="sub-item">Laporan Barang Keluar</span>
 								</a>
 							</li>
-						</ul>
-					</div>
-				</li>
+                        </ul>
+                    </div>
 				<li class="nav-item">
 					<a data-toggle="collapse" href="#">
 						<i class="fas fa-file-alt"></i>

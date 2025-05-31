@@ -7,9 +7,7 @@
 				</div>
 				<div class="info">
 					<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
-						<span>
-							Inasss
-							<span class="user-level">Staff Gudang</span>
+						<span><?php echo Auth::user()->name ?><span class="user-level"><?php echo Auth::user()->role ?></span>
 					</a>
 				</div>
 			</div>
@@ -94,12 +92,12 @@
 					<div class="collapse" id="bose">
 						<ul class="nav nav-collapse">
 							<li>
-								<a href="/databarang">
+								<a href="/laporan-masuk">
 									<span class="sub-item">Laporan Barang Masuk</span>
 								</a>
 							</li>
 							<li>
-								<a href="/kategori">
+								<a href="/laporan-keluar">
 									<span class="sub-item">Laporan Barang Keluar</span>
 								</a>
 							</li>

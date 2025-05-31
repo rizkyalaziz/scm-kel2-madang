@@ -50,7 +50,7 @@
 						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
 							<div class="page-header">
 								
-                                <h4 class="page-title text-white"> <i class="fas fa-home pr-2"></i> Jenis Barang</h4>
+                                <h4 class="page-title text-white"> <i class="fas fa-database pr-2"></i>Jenis Barang</h4>
                                 <ul class="breadcrumbs">
                                     <li class="nav-home">
 										<a href="#">
@@ -73,7 +73,7 @@
                             </div>
 							
                             <div class="ml-md-auto py-2 py-md-0">
-                                <button class="btn btn-secondary" data-toggle="modal" data-target="#modalTambahJenis">
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#modalTambahJenis">
                                     <span class="btn-label">
                                         <i class="fa fa-plus"></i>
                                     </span>

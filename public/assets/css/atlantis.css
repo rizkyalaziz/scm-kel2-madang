@@ -8962,4 +8962,13 @@ body {
   background: -webkit-linear-gradient(legacy-direction(-45deg), #E80A15, #F25961) !important;
   background: linear-gradient(-45deg, #E80A15, #F25961) !important; }
 
+.logo-madang {
+  width: 120px; /* Sesuaikan angkanya dengan logo Atlantis */
+  height: auto;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 10;
+}
+
 /*# sourceMappingURL=atlantis.css.map */

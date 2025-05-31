@@ -49,30 +49,30 @@
 					<div class="page-inner py-5">
 						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
 							<div class="page-header">
-                                <h4 class="page-title text-white"><i class="fas fa-home pr-2"></i>Satuan Barang</h4>
+                                <h4 class="page-title text-white"><i class="fas fa-database pr-2"></i>Satuan Barang</h4>
                                 <ul class="breadcrumbs">
                                     <li class="nav-home">
-                                        <a href="#">
-                                            <i class="flaticon-home"></i>
-                                        </a>
-                                    </li>
-                                    <li class="separator text-white">
-                                        <i class="flaticon-right-arrow"></i>
-                                    </li>
-                                    <li class="nav-item text-white">
-                                        <a href="satuanbarang.html">Satuan Barang</a>
-                                    </li>
-                                    <li class="separator text-white">
-                                        <i class="flaticon-right-arrow"></i>
-                                    </li>
-                                    <li class="nav-item text-white">
-                                        <a href="#">Tambah Data</a>
-                                    </li>
+										<a href="#">
+											<i class="flaticon-home text-white"></i>
+										</a>
+									</li>
+									<li class="separator text-white">
+										<i class="flaticon-right-arrow"></i>
+									</li>
+									<li class="nav-item text-white">
+										<a href="#" class="text-white">Data Barang</a>
+									</li>
+									<li class="separator text-white">
+										<i class="flaticon-right-arrow"></i>
+									</li>
+									<li class="nav-item text-white">
+										<a href="#" class="text-white">Input Data</a>
+									</li>
                                 </ul>
                             </div>
 							
                             <div class="ml-md-auto py-2 py-md-0">
-                                <button class="btn btn-secondary" data-toggle="modal" data-target="#modalTambahSatuan">
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#modalTambahSatuan">
                                     <span class="btn-label">
                                         <i class="fa fa-plus"></i>
                                     </span>

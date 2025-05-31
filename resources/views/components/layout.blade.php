@@ -25,6 +25,17 @@
 
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link rel="stylesheet" href="../assets/css/demo.css">
+
+	<style>
+		.hover-card:hover .icon-hover i {
+			transform: scale(1.4);
+			transition: transform 0.3s ease;
+		}
+
+		.icon-hover i {
+			transition: transform 0.3s ease;
+		}
+	</style>
 </head>
 
 <body>
@@ -49,7 +60,7 @@
 					<div class="page-inner py-5">
 						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
 							<div class="page-header">
-								<h4 class="page-title text-white">Menu Dashboard</h4>
+								<h4 class="page-title text-white"><i class="fas fa-home pr-2"></i>Menu Dashboard</h4>
 
 							</div>
 
@@ -59,31 +70,34 @@
 				</div>
 				<div class="page-inner mt--5">
 					<div class="row row-card-no-pd">
-						<div class="col-sm-6 col-md-4">
-							<div class="card card-stats card-round">
-								<div class="card-body ">
-									<div class="row">
-										<div class="col-5">
-											<div class="icon-big text-center">
-												<i class="flaticon-box-2 text-warning fa-2x"></i>
+						<div class="col-sm-6 col-md-4 ">
+							<a href="/databarang" class="no-underline text-white">
+								<div class="card card-stats card-round hover-card ">
+									<div class="card-body ">
+										<div class="row">
+											<div class="col-5">
+												<div class="icon-big text-center text-warning icon-hover">
+													<i class="flaticon-box-2 text-warning fa-2x"></i>
+												</div>
 											</div>
-										</div>
-										<div class="col-7 col-stats">
-											<div class="numbers">
-												<p class="card-category">Data Barang</p>
-												<h4 class="card-title">1</h4>
+											<div class="col-7 col-stats">
+												<div class="numbers">
+													<p class="card-category">Data Barang</p>
+													<h4 class="card-title">1</h4>
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-							</div>
+							</a>
 						</div>
 						<div class="col-sm-6 col-md-4">
-							<div class="card card-stats card-round">
+							<a href="/barangmasuk" class="no-underline text-white">
+							<div class="card card-stats card-round hover-card">
 								<div class="card-body ">
 									<div class="row">
 										<div class="col-5">
-											<div class="icon-big text-center">
+											<div class="icon-big text-center text-warning icon-hover">
 												<i class="flaticon-inbox text-success fa-2x"></i>
 											</div>
 										</div>
@@ -96,13 +110,15 @@
 									</div>
 								</div>
 							</div>
+							</a>
 						</div>
 						<div class="col-sm-6 col-md-4">
-							<div class="card card-stats card-round">
+							<a href="/barangkeluar" class="no-underline text-white">
+							<div class="card card-stats card-round hover-card">
 								<div class="card-body">
 									<div class="row">
 										<div class="col-5">
-											<div class="icon-big text-center">
+											<div class="icon-big text-center text-warning icon-hover">
 												<i class="flaticon-archive text-danger fa-2x"></i>
 											</div>
 										</div>
@@ -115,6 +131,7 @@
 									</div>
 								</div>
 							</div>
+							</a>
 						</div>
 					</div>
 					<div class="row">
@@ -260,13 +277,13 @@
 													<td>-</td>
 													<td>-</td>
 													<td class="action-buttons">
-                            <button class="btn btn-sm btn-warning">
-                                <i class="fas fa-edit"></i> Edit
-                            </button>
-                            <button class="btn btn-sm btn-danger">
-                                <i class="fas fa-trash-alt"></i> Hapus
-                            </button>
-                        </td>
+														<button class="btn btn-sm btn-warning">
+															<i class="fas fa-edit"></i> Edit
+														</button>
+														<button class="btn btn-sm btn-danger">
+															<i class="fas fa-trash-alt"></i> Hapus
+														</button>
+													</td>
 
 
 												</tr>
@@ -279,13 +296,13 @@
 													<td>-</td>
 													<td>-</td>
 													<td class="action-buttons">
-                            <button class="btn btn-sm btn-warning">
-                                <i class="fas fa-edit"></i> Edit
-                            </button>
-                            <button class="btn btn-sm btn-danger">
-                                <i class="fas fa-trash-alt"></i> Hapus
-                            </button>
-                        </td>
+														<button class="btn btn-sm btn-warning">
+															<i class="fas fa-edit"></i> Edit
+														</button>
+														<button class="btn btn-sm btn-danger">
+															<i class="fas fa-trash-alt"></i> Hapus
+														</button>
+													</td>
 
 												</tr>
 											</tbody>
