@@ -61,6 +61,12 @@
 							</li>
 						</ul>
 					</div>
+					<li class="nav-item ">
+					<a href="/supplierdata" class="collapsed" aria-expanded="false">
+						<i class="fas fa-user-plus"></i>
+						<p>Data Suplier</p>
+					</a>
+				</li>
 				</li>
 				<li class="nav-section">
 					<span class="sidebar-mini-icon">
@@ -84,6 +90,12 @@
 					<a href="/returbarang" class="collapsed" aria-expanded="false">
 						<i class="fas fa-box-open"></i>
 						<p>Barang Retur</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="/exp" class="collapsed" aria-expanded="false">
+						<i class="fas fa-calendar-times"></i>
+						<p>Barang Kedaluwarsa</p>
 					</a>
 				</li>
 
@@ -115,9 +127,9 @@
 					</div>
 				</li>
 				<li class="nav-item">
-					<a data-toggle="collapse" href="#">
+					<a href="/laporan-retur" class="collapsed" aria-expanded="false">
 						<i class="fas fa-file-alt"></i>
-						<p>Laporan Retur Barang</p>
+						<p>Laporan Barang Retur</p>
 					</a>
 				</li>
 				<li class="nav-item">

@@ -40,7 +40,7 @@
 		</div>
 
 		<!-- Sidebar -->
-		<x-retur></x-retur>
+		<x-expmasuk></x-expmasuk>
 		<!-- End Sidebar -->
 
 		<div class="main-panel">

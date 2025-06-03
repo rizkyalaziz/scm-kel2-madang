@@ -105,3 +105,23 @@ Route::get('/tambahretur', function () {
 Route::get('/akun', function () {
     return view('/akun');
 });
+
+Route::get('/exp', function () {
+    return view('/exp');
+});
+
+Route::get('/exptambah', function () {
+    return view('/exptambah');
+});
+
+Route::get('/supplierdata', function () {
+    return view('/supplierdata');
+});
+
+Route::get('/suppliertambah', function () {
+    return view('/suppliertambah');
+});
+
+Route::get('/laporan-retur', function () {
+    return view('/laporan-retur');
+});

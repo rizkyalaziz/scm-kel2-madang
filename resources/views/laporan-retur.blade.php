@@ -40,7 +40,7 @@
         </div>
 
         <!-- Sidebar -->
-        <x-retur></x-retur>
+        <x-laporan-retur></x-laporan-retur>
         <!-- Sidebar-->
 
         <div class="main-panel">
@@ -49,7 +49,7 @@
                     <div class="page-inner py-5">
                         <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
                             <div class="page-header">
-                                <h4 class="page-title text-white"><i class="fas fa-box-open"></i> Barang
+                                <h4 class="page-title text-white"><i class="fas fa-database pr-2"></i>Laporan Barang
                                     Retur</h4>
                                 <ul class="breadcrumbs">
                                     <li class="nav-home">
@@ -64,27 +64,11 @@
                                         <a href="#" class="text-white">Data Barang</a>
                                     </li>
                                     <li class="separator text-white">
+                                         
                                     </li>
                                     
                                 </ul>
-								
                             </div>
-							<div class="ml-md-auto py-2 py-md-0">
-								<a href="/tambahretur">
-								<button class="btn btn-primary mr-3 rounded-2">
-									<span class="btn-label">
-										<i class="fa fa-plus"></i>
-									</span>
-									Tambah Data
-								</button>
-								</a>
-								<button class="btn btn-success">
-									<span class="btn-label">
-										<i class="fa fa-check"></i>
-									</span>
-									Kirim Data
-								</button>
-							</div>
 
 
 
@@ -96,39 +80,52 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <div class="card-title">Data Barang Retur</div>
+                                    <div class="card-title">Filter Data Barang</div>
                                 </div>
                                 <div class="card-body ">
                                     <div class="row">
-										
-										<div class="col-md-12 col-lg-12">
-											<div class="form-group d-flex justify-content-center align-items-center flex-wrap">
-												<img src="../assets/img/LogoMieGacoan.png" alt="Logo PT" style="margin-top: -30px; margin-left: -500px; width: 150px; margin-right: 325px;" class="me-5">
-												<div class="card-title mb-0 h5">PT. PESTA PORA ABADI</div>
-											</div>
-										</div>
-                                        <div class="col-md-4 col-lg-4">
+                                        <div class="col-md-3 col-lg-3">
                                             <div class="form-group">
-                                                <label for="cabang">Nama Cabang</label>
-                                                <input type="text" class="form-control" id="cabang"
-                                                    placeholder="Masukkan Cabang">
-                                            </div>
-                                        </div>
-										<div class="col-md-4 col-lg-4">
-										<div class="form-group">
-                                                <label for="stokker">Nama Stokker</label>
-                                                <input type="text" class="form-control" id="stokker"
-                                                    placeholder="Masukkan Nama Stokker">
-                                            </div>
-										</div>
-
-                                        <div class="col-md-4 col-lg-4">
-                                            <div class="form-group">
-                                                <label for="idBarang">Tanggal</label>
+                                                <label for="idBarang">Tanggal Awal</label>
                                                 <input type="date" class="form-control" id="idBarang"
                                                     placeholder="Masukkan Kategori Barang">
                                             </div>
+
+
                                         </div>
+                                        <div class="col-md-3 col-lg-3">
+                                            <div class="form-group">
+                                                <label for="idBarang">Tanggal Akhir</label>
+                                                <input type="date" class="form-control" id="idBarang"
+                                                    placeholder="Masukkan Kategori Barang">
+                                            </div>
+
+
+                                        </div>
+
+                                        <div class="col-md-4 py-3 py-md-0 mt-sm-4 d-flex gap-2 align-items-center">
+                                            <button class="btn btn-primary mr-4" data-toggle="modal"
+                                                data-target="#modalTambahBarang">
+                                                <span class="btn-label">
+                                                    <i class="fas fa-eye"></i>
+                                                </span>
+                                                Tampilkan
+                                            </button>
+                                            <button class="btn btn-warning mr-4">
+                                                <span class="btn-label">
+                                                    <i class="icon-printer"></i>
+                                                </span>
+                                                Cetak Data
+                                            </button>
+                                            <button class="btn btn-success">
+                                                <span class="btn-label">
+                                                    <i class="  fas fa-file-excel"></i>
+                                                </span>
+                                                Kirim Data
+                                            </button>
+                                        </div>
+
+
                                     </div>
                                 </div>
 
@@ -143,7 +140,7 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Data Barang Retur</h4>
+                                    <h4 class="card-title">Data Laporan Barang Retur</h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
@@ -152,10 +149,10 @@
                                             <thead class="table-dark">
                                                 <tr>
                                                     <th>No</th>
-													<th>Id Barang</th>
+                                                    <th>ID Barang</th>
                                                     <th>Nama Barang</th>
                                                     <th>Jumlah</th>
-                                                    <th>Keterangan</th>
+                                                    <th>Satuan</th>
                                                     <th>Tanggal Retur</th>
                                                     <th>Aksi</th>
                                                 </tr>
@@ -163,10 +160,10 @@
                                             <tfoot>
                                                 <tr>
                                                     <th>No</th>
-													<th>Id Barang</th>
+                                                    <th>ID Barang</th>
                                                     <th>Nama Barang</th>
                                                     <th>Jumlah</th>
-                                                    <th>Keterangan</th>
+                                                    <th>Satuan</th>
                                                     <th>Tanggal Retur</th>
                                                     <th>Aksi</th>
                                                 </tr>
@@ -174,24 +171,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td>-</td>
-													<td>-</td>
                                                     <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-
-                                                    <td class="action-buttons">
-                                                        <button class="btn btn-sm btn-warning">
-                                                            <i class="fas fa-edit"></i> Edit
-                                                        </button>
-                                                        <button class="btn btn-sm btn-danger">
-                                                            <i class="fas fa-trash-alt"></i> Hapus
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>-</td>
-													<td>-</td>
                                                     <td>-</td>
                                                     <td>-</td>
                                                     <td>-</td>
@@ -208,7 +188,24 @@
                                                 </tr>
                                                 <tr>
                                                     <td>-</td>
-													<td>-</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+
+                                                    <td class="action-buttons">
+                                                        <button class="btn btn-sm btn-warning">
+                                                            <i class="fas fa-edit"></i> Edit
+                                                        </button>
+                                                        <button class="btn btn-sm btn-danger">
+                                                            <i class="fas fa-trash-alt"></i> Hapus
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>-</td>
+                                                    <td>-</td>
                                                     <td>-</td>
                                                     <td>-</td>
                                                     <td>-</td>

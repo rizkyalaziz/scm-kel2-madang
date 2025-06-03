@@ -230,9 +230,7 @@
 													<th>No</th>
 													<th>ID Barang</th>
 													<th>Nama Barang</th>
-													<th>Stok</th>
-													<th>Kategori</th>
-													<th>Jenis</th>
+													<th>Stok Minimum</th>
 													<th>Satuan</th>
 													<th>Aksi</th>
 												</tr>
@@ -242,9 +240,7 @@
 													<th>No</th>
 													<th>ID Barang</th>
 													<th>Nama Barang</th>
-													<th>Stok</th>
-													<th>Kategori</th>
-													<th>Jenis</th>
+													<th>Stok Minimum</th>
 													<th>Satuan</th>
 													<th>Aksi</th>
 												</tr>
@@ -255,8 +251,7 @@
 													<td>-</td>
 													<td>-</td>
 													<td>-</td>
-													<td>-</td>
-													<td>-</td>
+													
 													<td>-</td>
 													<td class="action-buttons">
 														<button class="btn btn-sm btn-warning">
@@ -274,8 +269,7 @@
 													<td>-</td>
 													<td>-</td>
 													<td>-</td>
-													<td>-</td>
-													<td>-</td>
+													
 													<td class="action-buttons">
 														<button class="btn btn-sm btn-warning">
 															<i class="fas fa-edit"></i> Edit
@@ -293,8 +287,7 @@
 													<td>-</td>
 													<td>-</td>
 													<td>-</td>
-													<td>-</td>
-													<td>-</td>
+													
 													<td class="action-buttons">
 														<button class="btn btn-sm btn-warning">
 															<i class="fas fa-edit"></i> Edit
