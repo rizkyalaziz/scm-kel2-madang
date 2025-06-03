@@ -8,14 +8,13 @@
 				<div class="info">
 					<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 						<span>
-							<span><?php echo Auth::user()->name ?></span>
-							<span class="user-level"><?php echo Auth::user()->role ?></span>
+							<?php echo Auth::user()->name ?>
+							<span class="user-level">Staff Admin Gudang</span>
 					</a>
 				</div>
 			</div>
 			<ul class="nav nav-primary">
 				<li class="nav-section">
-
 					<h4 class="text-section">Dashboard</h4>
 				</li>
 				<li class="nav-item">
@@ -30,13 +29,13 @@
 					</span>
 					<h4 class="text-section">Master</h4>
 				</li>
-				<li class="nav-item active submenu">
+				<li class="nav-item">
 					<a data-toggle="collapse" href="#base">
 						<i class="fas fa-database"></i>
 						<p>Stock Barang</p>
 						<span class="caret"></span>
 					</a>
-					<div class="collapse show" id="base">
+					<div class="collapse" id="base">
 						<ul class="nav nav-collapse">
 							<li>
 								<a href="/databarang">
@@ -53,7 +52,6 @@
 									<span class="sub-item">Jenis Barang</span>
 								</a>
 							</li>
-
 							<li>
 								<a href="/satuan">
 									<span class="sub-item">Satuan</span>
@@ -80,13 +78,13 @@
 						<p>Barang Keluar</p>
 					</a>
 				</li>
-				<li class="nav-item">
+                <li class="nav-item active">
 					<a href="/returbarang" class="collapsed" aria-expanded="false">
 						<i class="fas fa-box-open"></i>
 						<p>Barang Retur</p>
 					</a>
 				</li>
-
+				
 				<li class="nav-section">
 					<span class="sidebar-mini-icon">
 						<i class="fa fa-ellipsis-h"></i>
@@ -96,7 +94,7 @@
 				<li class="nav-item">
 					<a data-toggle="collapse" href="#bose">
 						<i class="fas fa-file-alt"></i>
-						<p>Data Laporan Barang</p>
+						<p>Laporan Data Barang</p>
 						<span class="caret"></span>
 					</a>
 					<div class="collapse" id="bose">

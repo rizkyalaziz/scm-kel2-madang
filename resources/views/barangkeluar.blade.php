@@ -73,22 +73,13 @@
 
 							<!-- Tombol untuk memunculkan modal -->
 							<div class="ml-md-auto py-2 py-md-0">
-fitur-adan
-								<button class="btn btn-secondary" data-toggle="modal" data-target="#modalTambahBarangKeluar">
+
+								<button class="btn btn-primary" data-toggle="modal" data-target="#modalTambahBarangKeluar">
 									<span class="btn-label">
 										<i class="fa fa-plus"></i>
 									</span>
 									Tambah Data
 								</button>
-
-								<a href="/tambahkeluar">
-									<button class="btn btn-primary">
-										<span class="btn-label">
-											<i class="fa fa-plus"></i>
-										</span>
-										Tambah Data
-									</button>
-								</a>
                                     <button class="btn btn-success">
 											<span class="btn-label">
 												<i class="fa fa-check"></i>
@@ -96,7 +87,7 @@ fitur-adan
 											Kirim Data
 										</button>
 								
- master
+
 							</div>
 
 						</div>
@@ -117,7 +108,6 @@ fitur-adan
 												<tr>
 													<th>No</th>
 													<th>Nama Barang</th>
- fitur-adan
 													<th>Jumlah</th>
 													<th>Tanggal Keluar</th>
 													<th>Keterangan</th>
@@ -125,12 +115,7 @@ fitur-adan
 												</tr>
 											</thead>
 
-													<th>Stok</th>
-													 
-													<th>Satuan</th>
-													<th>Aksi</th>
-												</tr>
-											</thead>
+													
 											<tfoot>
 												<tr>
 													<th>No</th>
@@ -142,11 +127,11 @@ fitur-adan
 													<th>Aksi</th>
 												</tr>
 											</tfoot>
- master
+
 											<tbody>
 												@foreach($barangkeluar as $i => $item)
 												<tr>
-fitur-adan
+
 													<td>{{ $i+1 }}</td>
 													<td>{{ $item->nama_barang }}</td>
 													<td>{{ $item->jumlah }}</td>
@@ -163,49 +148,8 @@ fitur-adan
 														<!-- Tombol Edit -->
 														<button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalEditBarangKeluar{{ $item->id }}">
 															<i class="fa fa-edit"></i> Edit
-
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													 
-													<td class="action-buttons">
-														<button class="btn btn-sm btn-warning">
-															<i class="fas fa-edit"></i> Edit
-														</button>
-														<button class="btn btn-sm btn-danger">
-															<i class="fas fa-trash-alt"></i> Hapus
-														</button>
-													</td>
 												</tr>
-												<tr>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													 
-													<td class="action-buttons">
-														<button class="btn btn-sm btn-warning">
-															<i class="fas fa-edit"></i> Edit
-														</button>
-														<button class="btn btn-sm btn-danger">
-															<i class="fas fa-trash-alt"></i> Hapus
-														</button>
-													</td>
-												</tr>
-												<tr>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													 
-													<td class="action-buttons">
-														<button class="btn btn-sm btn-warning">
-															<i class="fas fa-edit"></i> Edit
- master
+												
 														</button>
 														@if($item->gambar)
 														<button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalPreviewGambar{{ $item->id }}">

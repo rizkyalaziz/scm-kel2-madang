@@ -8,8 +8,8 @@
 				<div class="info">
 					<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 						<span>
-							<?php echo Auth::user()->name ?>
-							<span class="user-level">Staff Admin Gudang</span>
+							<span><?php echo Auth::user()->name ?></span>
+							<span class="user-level"><?php echo Auth::user()->role ?></span>
 					</a>
 				</div>
 			</div>
@@ -79,6 +79,12 @@
 						<p>Barang Keluar</p>
 					</a>
 				</li>
+				<li class="nav-item">
+					<a href="/returbarang" class="collapsed" aria-expanded="false">
+						<i class="fas fa-sign-out-alt"></i>
+						<p>Barang Retur</p>
+					</a>
+				</li>
 
 				<li class="nav-section">
 					<span class="sidebar-mini-icon">
@@ -89,7 +95,7 @@
 				<li class="nav-item active submenu">
 					<a data-toggle="collapse" href="#bose">
 						<i class="fas fa-file-alt"></i>
-						<p>Data Laporan Barang</p>
+						<p>Laporan Data Barang</p>
 						<span class="caret"></span>
 					</a>
 					<div class="collapse show" id="bose">

@@ -1,7 +1,11 @@
 <div class="logo-header" data-background-color="blue">
 
 				<a href="index.html" class="logo">
-					<img src="../assets/img/logo.svg" alt="navbar brand" class="navbar-brand ">
+					<img src="../assets/img/huh.png" alt="navbar brand" class="navbar-brand" style="margin-top: -20px; margin-left: -5px;" width="200" height="100">
+
+					
+					
+					
 				</a>
 				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
 					data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
