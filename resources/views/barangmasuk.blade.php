@@ -124,12 +124,29 @@
 									            </select>
 									          </div>
 									          <div class="form-group">
-									            <label for="jumlah">Jumlah</label>
-									            <input type="number" class="form-control" id="jumlah" name="jumlah" min="1" required>
+									            <label for="satuan_id">Satuan</label>
+									            <select class="form-control" id="satuan_id" name="satuan_id" required>
+									              <option value="">-- Pilih Satuan --</option>
+									              @foreach($satuan as $sat)
+									                <option value="{{ $sat->id }}">{{ $sat->nama }}</option>
+									              @endforeach
+									            </select>
+									          </div>
+									          <div class="form-group">
+									            <label for="stok">Stok</label>
+									            <input type="number" class="form-control" id="stok" name="stok" min="0" required>
 									          </div>
 									          <div class="form-group">
 									            <label for="tanggal_masuk">Tanggal Masuk</label>
 									            <input type="date" class="form-control" id="tanggal_masuk" name="tanggal_masuk" required>
+									          </div>
+									          <div class="form-group">
+									            <label for="jumlah_masuk">Jumlah Masuk</label>
+									            <input type="number" class="form-control" id="jumlah_masuk" name="jumlah_masuk" min="1" required>
+									          </div>
+									          <div class="form-group">
+									            <label for="sisa_stok">Sisa Stok</label>
+									            <input type="number" class="form-control" id="sisa_stok" name="sisa_stok" min="0" required>
 									          </div>
 									          <div class="form-group">
 									            <label for="keterangan">Keterangan</label>
@@ -155,8 +172,11 @@
 												<tr>
 													<th>No</th>
 													<th>Nama Barang</th>
-													<th>Jumlah</th>
+													<th>Satuan</th>
+													<th>Stok</th>
 													<th>Tanggal Masuk</th>
+													<th>Jumlah Masuk</th>
+													<th>Sisa Stok</th>
 													<th>Keterangan</th>
 													<th>Aksi</th>
 												</tr>
@@ -166,8 +186,11 @@
 												<tr>
 													<td>{{ $i+1 }}</td>
 													<td>{{ $item->databarang->nama ?? '-' }}</td>
-													<td>{{ $item->jumlah }}</td>
+													<td>{{ $item->satuan->nama ?? '-' }}</td>
+													<td>{{ $item->stok }}</td>
 													<td>{{ $item->tanggal_masuk }}</td>
+													<td>{{ $item->jumlah_masuk }}</td>
+													<td>{{ $item->sisa_stok }}</td>
 													<td>{{ $item->keterangan }}</td>
 													<td>
 														<form action="{{ route('barangmasuk.destroy', $item->id) }}" method="POST" style="display:inline-block">

@@ -54,7 +54,6 @@ Route::get('/barangkeluar', function () {
     return view('/barangkeluar');
 });
 
- fitur-adan
 Route::resource('satuan', SatuanController::class)->except(['show', 'create', 'edit']);
 Route::resource('jenis', JenisController::class)->except(['show', 'create', 'edit']);
 Route::resource('kategori', KategoriController::class)->except(['show', 'create', 'edit']);
@@ -76,8 +75,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('logout', [SesiController::class, 'logout']);
 });
 
-
-
 Route::get('/tambahmasuk', function () {
     return view('/tambahmasuk');
 });
@@ -93,4 +90,3 @@ Route::get('/tambahkeluar', function () {
 Route::get('/laporan-keluar', function () {
     return view('/laporan-keluar');
 });
- master
