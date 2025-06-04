@@ -9,6 +9,8 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\DatabarangController;
 use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\BarangKeluarController;
+use App\Http\Controllers\DataSuplierController;
+
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -59,6 +61,7 @@ Route::resource('kategori', KategoriController::class)->except(['show', 'create'
 Route::resource('databarang', DatabarangController::class)->except(['show', 'create', 'edit']);
 Route::resource('barangmasuk', BarangMasukController::class);
 Route::resource('barangkeluar', BarangKeluarController::class);
+Route::apiResource('data-supliers', DataSuplierController::class);
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/', [SesiController::class, 'index'])->name('login');
@@ -78,9 +81,7 @@ Route::get('/tambahmasuk', function () {
     return view('/tambahmasuk');
 });
 
-Route::get('/laporan-masuk', function () {
-    return view('/laporan-masuk');
-});
+Route::get('/laporan-masuk', [App\Http\Controllers\BarangMasukController::class, 'laporan'])->name('laporan-masuk');
 
 Route::get('/tambahkeluar', function () {
     return view('/tambahkeluar');
@@ -90,9 +91,8 @@ Route::get('/laporan-keluar', function () {
     return view('/laporan-keluar');
 });
 
-Route::get('/returbarang', function () {
-    return view('/returbarang');
-});
+Route::get('/returbarang', [App\Http\Controllers\ReturBarangController::class, 'index'])->name('returbarang');
+Route::post('/returbarang', [App\Http\Controllers\ReturBarangController::class, 'store'])->name('returbarang.store');
 
 Route::get('/tambahretur', function () {
     return view('/tambahretur');
@@ -110,14 +110,13 @@ Route::get('/exptambah', function () {
     return view('/exptambah');
 });
 
-Route::get('/supplierdata', function () {
-    return view('/supplierdata');
-});
-
-Route::get('/suppliertambah', function () {
-    return view('/suppliertambah');
-});
-
 Route::get('/laporan-retur', function () {
     return view('/laporan-retur');
 });
+
+
+Route::get('/supplierdata', [DataSuplierController::class, 'index'])->name('supplierdata');
+Route::post('/data-supliers', [DataSuplierController::class, 'store'])->name('data-supliers.store');
+Route::put('/data-supliers/{id}', [DataSuplierController::class, 'update'])->name('data-supliers.update');
+Route::delete('/data-supliers/{id}', [DataSuplierController::class, 'destroy'])->name('data-supliers.destroy');
+Route::get('/laporan-masuk/export-excel', [App\Http\Controllers\BarangMasukController::class, 'exportExcel'])->name('laporan-masuk.export-excel');
