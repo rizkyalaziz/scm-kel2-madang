@@ -14,9 +14,8 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+// Route dashboard diarahkan ke AdminController@index agar data dashboard tampil
+Route::get('/dashboard', [AdminController::class, 'index']);
 
 Route::get('/kategori', function () {
     return view('kategori');
@@ -89,4 +88,36 @@ Route::get('/tambahkeluar', function () {
 
 Route::get('/laporan-keluar', function () {
     return view('/laporan-keluar');
+});
+
+Route::get('/returbarang', function () {
+    return view('/returbarang');
+});
+
+Route::get('/tambahretur', function () {
+    return view('/tambahretur');
+});
+
+Route::get('/akun', function () {
+    return view('/akun');
+});
+
+Route::get('/exp', function () {
+    return view('/exp');
+});
+
+Route::get('/exptambah', function () {
+    return view('/exptambah');
+});
+
+Route::get('/supplierdata', function () {
+    return view('/supplierdata');
+});
+
+Route::get('/suppliertambah', function () {
+    return view('/suppliertambah');
+});
+
+Route::get('/laporan-retur', function () {
+    return view('/laporan-retur');
 });

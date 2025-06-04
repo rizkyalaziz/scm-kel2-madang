@@ -7,7 +7,9 @@
 				</div>
 				<div class="info">
 					<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
-						<span><?php echo Auth::user()->name ?><span class="user-level"><?php echo Auth::user()->role ?></span>
+						<span>
+							<?php echo Auth::user()->name ?>
+							<span class="user-level">Staff Admin Gudang</span>
 					</a>
 				</div>
 			</div>
@@ -15,7 +17,7 @@
 				<li class="nav-section">
 					<h4 class="text-section">Dashboard</h4>
 				</li>
-				<li class="nav-item active">
+				<li class="nav-item">
 					<a href="/dashboard" class="collapsed" aria-expanded="false">
 						<i class="fas fa-home"></i>
 						<p>Dashboard</p>
@@ -57,12 +59,13 @@
 							</li>
 						</ul>
 					</div>
-					<li class="nav-item">
+                    <li class="nav-item active">
 					<a href="/supplierdata" class="collapsed" aria-expanded="false">
 						<i class="fas fa-user-plus"></i>
 						<p>Data Suplier</p>
 					</a>
 				</li>
+                    
 				</li>
 				<li class="nav-section">
 					<span class="sidebar-mini-icon">
@@ -76,13 +79,13 @@
 						<p>Barang Masuk</p>
 					</a>
 				</li>
-				 <li class="nav-item">
+				<li class="nav-item">
 					<a href="/barangkeluar" class="collapsed" aria-expanded="false">
 						<i class="fas fa-sign-out-alt"></i>
 						<p>Barang Keluar</p>
 					</a>
 				</li>
-				<li class="nav-item">
+                <li class="nav-item">
 					<a href="/returbarang" class="collapsed" aria-expanded="false">
 						<i class="fas fa-box-open"></i>
 						<p>Barang Retur</p>

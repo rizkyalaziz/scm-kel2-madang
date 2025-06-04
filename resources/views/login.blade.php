@@ -9,9 +9,9 @@
     <title>Login</title>
 </head>
 <body>
-    <div class="container py-5">
+    <div class="container py-5 fw-600 min-vh-100">
         <div class="w-50 center border rounded px-3 py-3 mx-auto">
-        <h1>Login</h1>
+        <h1 class="text-center">Login</h1>
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>

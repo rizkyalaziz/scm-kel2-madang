@@ -105,34 +105,25 @@
 													<th>No</th>
 													<th>ID Barang</th>
 													<th>Nama Barang</th>
-													<th>Kode</th>
+													
 													<th>Kategori</th>
 													<th>Jenis</th>
 													<th>Stok Minimum</th>
 													<th>Satuan</th>
-													<th>Gambar</th>
+													
 													<th>Aksi</th>
 												</tr>
 											</thead>
 											<tbody>
 												@foreach($barang as $i => $item)
 												<tr>
-fitur-adan
 													<td>{{ $i+1 }}</td>
 													<td>{{ $item->id_barang }}</td>
 													<td>{{ $item->nama }}</td>
-													<td>{{ $item->kode }}</td>
 													<td>{{ $item->kategori->nama ?? '-' }}</td>
 													<td>{{ $item->jenis->nama ?? '-' }}</td>
 													<td>{{ $item->stok_minimum }}</td>
 													<td>{{ $item->satuan->nama ?? '-' }}</td>
-													<td>
-														@if($item->gambar)
-															<img src="{{ asset('storage/' . $item->gambar) }}" width="50"/>
-														@else
-															-
-														@endif
-													</td>
 													<td>
 														<form action="{{ route('databarang.destroy', $item->id) }}" method="POST" style="display:inline-block">
 															@csrf
@@ -144,37 +135,7 @@ fitur-adan
 														<button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalEditBarang{{ $item->id }}">
 															<i class="fa fa-edit"></i> Edit
 
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-
-													<td class="action-buttons">
-														<button class="btn btn-sm btn-warning">
-															<i class="fas fa-edit"></i> Edit
-														</button>
-														<button class="btn btn-sm btn-danger">
-															<i class="fas fa-trash-alt"></i> Hapus
-														</button>
-													</td>
-												</tr>
-												<tr>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-													<td>-</td>
-
-													<td class="action-buttons">
-														<button class="btn btn-sm btn-warning">
-															<i class="fas fa-edit"></i> Edit
-														</button>
-														<button class="btn btn-sm btn-danger">
-															<i class="fas fa-trash-alt"></i> Hapus
- master
-														</button>
-													</td>
+													
 												</tr>
 												<!-- Modal Edit Barang -->
 												<div class="modal fade" id="modalEditBarang{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="modalEditBarangLabel{{ $item->id }}" aria-hidden="true">
@@ -199,10 +160,6 @@ fitur-adan
 												              <div class="form-group">
 												                <label for="editNamaBarang{{ $item->id }}">Nama Barang</label>
 												                <input type="text" class="form-control" id="editNamaBarang{{ $item->id }}" name="nama" value="{{ $item->nama }}" required>
-												              </div>
-												              <div class="form-group">
-												                <label for="editKodeBarang{{ $item->id }}">Kode Barang</label>
-												                <input type="text" class="form-control" id="editKodeBarang{{ $item->id }}" name="kode" value="{{ $item->kode }}" required>
 												              </div>
 												              <div class="form-group">
 												                <label for="editKategoriBarang{{ $item->id }}">Kategori Barang</label>
@@ -351,7 +308,7 @@ fitur-adan
 	        @csrf
 	        <div class="modal-body">
 	          <div class="row">
-	            <div class="col-md-7 col-lg-7">
+	            <div class="col-md-12 col-lg-12">
 	              <div class="form-group">
 	                <label for="idBarang">ID Barang</label>
 	                <input type="text" class="form-control" id="idBarang" name="id_barang" placeholder="Masukkan ID Barang" required>
@@ -359,10 +316,6 @@ fitur-adan
 	              <div class="form-group">
 	                <label for="namaBarang">Nama Barang</label>
 	                <input type="text" class="form-control" id="namaBarang" name="nama" placeholder="Masukkan Nama Barang" required>
-	              </div>
-	              <div class="form-group">
-	                <label for="kodeBarang">Kode Barang</label>
-	                <input type="text" class="form-control" id="kodeBarang" name="kode" placeholder="Masukkan Kode Barang" required>
 	              </div>
 	              <div class="form-group">
 	                <label for="kategoriBarang">Kategori Barang</label>
@@ -394,12 +347,6 @@ fitur-adan
 	                    <option value="{{ $sat->id }}">{{ $sat->nama }}</option>
 	                  @endforeach
 	                </select>
-	              </div>
-	            </div>
-	            <div class="col-md-5 col-lg-5">
-	              <div class="form-group">
-	                <label for="exampleFormControlFile1">Upload Gambar</label>
-	                <input type="file" class="form-control-file" id="exampleFormControlFile1" name="gambar">
 	              </div>
 	            </div>
 	          </div>

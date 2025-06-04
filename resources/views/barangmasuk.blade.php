@@ -72,7 +72,7 @@
 							</div>
 
 							<div class="ml-md-auto py-2 py-md-0">
- fitur-adan
+
 								<button class="btn btn-primary" data-toggle="modal" data-target="#modalTambahBarangMasuk">
 									<span class="btn-label">
 										<i class="fa fa-plus"></i>
@@ -87,7 +87,7 @@
 											Kirim Data
 										</button>
 								</a>
- master
+
 							</div>
 
 						</div>

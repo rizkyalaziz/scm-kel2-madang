@@ -40,7 +40,7 @@
 		</div>
 
 		<!-- Sidebar -->
-		<x-masuk></x-masuk>
+		<x-retur></x-retur>
 		<!-- End Sidebar -->
 
 		<div class="main-panel">
@@ -49,7 +49,7 @@
 					<div class="page-inner py-5">
 						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
 							<div class="page-header">
-								<h4 class="page-title text-white">Tambah Barang Masuk</h4>
+								<h4 class="page-title text-white">Tambah Barang Retur</h4>
 								<ul class="breadcrumbs">
 									<li class="nav-home">
 										<a href="#">
@@ -86,45 +86,43 @@
 									<div class="row">
 										<div class="col-md-6 col-lg-6">
 											<div class="form-group">
-												<label for="idTransaksi">ID Transaksi</label>
+												<label for="idTransaksi">ID Barang</label>
 												<input type="tel" class="form-control" id="idTransaksi" placeholder="">
 											</div>
 											<div class="form-group">
-
 												<label for="defaultSelect">Nama Barang</label>
 												<select class="form-control form-control" id="defaultSelect">
 													<option>-- Pilih --</option>
 												</select>
 											</div>
+                                            
+                                            <div class="form-group">
+												<label for="satuan">Stok</label>
+												<input type="number" class="form-control" id="stok">
+											</div>
 											<div class="form-group">
-
 												<label for="defaultSelect">Satuan</label>
 												<select class="form-control form-control" id="defaultSelect">
 													<option>-- Pilih --</option>
 												</select>
-											</div>
-											<div class="form-group">
-												<label for="satuan">Stok</label>
-												<input type="number" class="form-control" id="stok">
-											</div>
-											 
+                                        </div>
 
 										</div>
-										<div class="col-md-5 col-lg-5">
+										<div class="col-md-6 col-lg-6">
 											
 											<div class="form-group">
-												<label for="satuan">Tanggal</label>
+												<label for="satuan">Tanggal Retur</label>
 												<input type="date" class="form-control" id="satuan">
 											</div>
-											<div class="form-group">
-												<label for="satuan">Jumlah Masuk</label>
-												<input type="number" class="form-control" id="satuan">
+                                            <div class="form-group">
+												<label for="satuan">Jumlah</label>
+												<input type="number" class="form-control" id="stok">
+											</div>
+                                            <div class="form-group">
+												<label for="idTransaksi">Keterangan</label>
+												<input type="tel" class="form-control" id="idTransaksi" placeholder="">
 											</div>
 											<div class="form-group">
-												<label for="satuan">Total Stok</label>
-												<input type="number" class="form-control" id="satuan">
-											</div>
-											 <div class="form-group">
 												<div class="mb-3">
 													<label for="formFile" class="form-label">Upload Foto Barang</label>
 													<input class="form-control" type="file" id="formFile">
