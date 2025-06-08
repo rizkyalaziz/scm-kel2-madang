@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\BarangKeluar;
 use App\Models\Databarang;
 use Illuminate\Http\Request;
+use App\Exports\BarangKeluarExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BarangKeluarController extends Controller
 {
@@ -55,5 +57,26 @@ class BarangKeluarController extends Controller
         $barangkeluar = BarangKeluar::findOrFail($id);
         $barangkeluar->delete();
         return redirect()->route('barangkeluar.index')->with('success', 'Data barang keluar berhasil dihapus!');
+    }
+
+    public function laporan(Request $request)
+    {
+        $query = \App\Models\BarangKeluar::with(['databarang', 'databarang.satuan']);
+        if ($request->filled('tanggal_awal') && $request->filled('tanggal_akhir')) {
+            $query->whereBetween('tanggal_keluar', [$request->tanggal_awal, $request->tanggal_akhir]);
+        }
+        $barangkeluar = $query->get();
+        return view('laporan-keluar', compact('barangkeluar'));
+    }
+
+    public function exportExcel(Request $request)
+    {
+        $query = \App\Models\BarangKeluar::with(['databarang', 'databarang.satuan']);
+        if ($request->filled('tanggal_awal') && $request->filled('tanggal_akhir')) {
+            $query->whereBetween('tanggal_keluar', [$request->tanggal_awal, $request->tanggal_akhir]);
+        }
+        $barangkeluar = $query->get();
+        $export = new BarangKeluarExport($barangkeluar);
+        return Excel::download($export, 'laporan-barang-keluar.xlsx');
     }
 }

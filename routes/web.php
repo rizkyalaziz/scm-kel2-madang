@@ -10,6 +10,8 @@ use App\Http\Controllers\DatabarangController;
 use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\BarangKeluarController;
 use App\Http\Controllers\DataSuplierController;
+use App\Http\Controllers\ExpController;
+use App\Http\Controllers\ReturBarangController;
 
 
 Route::get('/welcome', function () {
@@ -87,9 +89,7 @@ Route::get('/tambahkeluar', function () {
     return view('/tambahkeluar');
 });
 
-Route::get('/laporan-keluar', function () {
-    return view('/laporan-keluar');
-});
+Route::get('/laporan-keluar', [BarangKeluarController::class, 'laporan'])->name('laporan-keluar');
 
 Route::get('/returbarang', [App\Http\Controllers\ReturBarangController::class, 'index'])->name('returbarang');
 Route::post('/returbarang', [App\Http\Controllers\ReturBarangController::class, 'store'])->name('returbarang.store');
@@ -102,17 +102,17 @@ Route::get('/akun', function () {
     return view('/akun');
 });
 
-Route::get('/exp', function () {
-    return view('/exp');
-});
+Route::get('/exp', [ExpController::class, 'index'])->name('exp');
+Route::post('/exp', [ExpController::class, 'store'])->name('exp.store');
+Route::post('/exp/{id}/update', [ExpController::class, 'update'])->name('exp.update');
+Route::delete('/exp/{id}', [ExpController::class, 'destroy'])->name('exp.destroy');
 
 Route::get('/exptambah', function () {
     return view('/exptambah');
 });
 
-Route::get('/laporan-retur', function () {
-    return view('/laporan-retur');
-});
+Route::get('/laporan-retur', [ReturBarangController::class, 'laporan'])->name('laporan-retur');
+Route::get('/laporan-retur/export-excel', [App\Http\Controllers\ReturBarangController::class, 'exportExcel'])->name('laporan-retur.export-excel');
 
 
 Route::get('/supplierdata', [DataSuplierController::class, 'index'])->name('supplierdata');
@@ -120,3 +120,4 @@ Route::post('/data-supliers', [DataSuplierController::class, 'store'])->name('da
 Route::put('/data-supliers/{id}', [DataSuplierController::class, 'update'])->name('data-supliers.update');
 Route::delete('/data-supliers/{id}', [DataSuplierController::class, 'destroy'])->name('data-supliers.destroy');
 Route::get('/laporan-masuk/export-excel', [App\Http\Controllers\BarangMasukController::class, 'exportExcel'])->name('laporan-masuk.export-excel');
+Route::get('/laporan-keluar/export-excel', [BarangKeluarController::class, 'exportExcel'])->name('laporan-keluar.export-excel');

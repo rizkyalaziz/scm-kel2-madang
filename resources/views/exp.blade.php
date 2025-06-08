@@ -70,14 +70,12 @@
 								
                             </div>
 							<div class="ml-md-auto py-2 py-md-0">
-								<a href="/exptambah">
-								<button class="btn btn-primary mr-3 rounded-2">
+								<button class="btn btn-primary mr-3 rounded-2" data-toggle="modal" data-target="#modalTambahExp">
 									<span class="btn-label">
 										<i class="fa fa-plus"></i>
 									</span>
 									Tambah Data
 								</button>
-								</a>
 								<button class="btn btn-success">
 									<span class="btn-label">
 										<i class="fa fa-check"></i>
@@ -174,61 +172,94 @@
                                                 </tr>
                                             </tfoot>
                                             <tbody>
-                                                <tr>
-                                                    <td>-</td>
-													<td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-
-                                                    <td class="action-buttons">
-                                                        <button class="btn btn-sm btn-warning">
-                                                            <i class="fas fa-edit"></i> Edit
-                                                        </button>
-                                                        <button class="btn btn-sm btn-danger">
-                                                            <i class="fas fa-trash-alt"></i> Hapus
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>-</td>
-													<td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-
-                                                    <td class="action-buttons">
-                                                        <button class="btn btn-sm btn-warning">
-                                                            <i class="fas fa-edit"></i> Edit
-                                                        </button>
-                                                        <button class="btn btn-sm btn-danger">
-                                                            <i class="fas fa-trash-alt"></i> Hapus
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>-</td>
-													<td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td class="action-buttons">
-                                                        <button class="btn btn-sm btn-warning">
-                                                            <i class="fas fa-edit"></i> Edit
-                                                        </button>
-                                                        <button class="btn btn-sm btn-danger">
-                                                            <i class="fas fa-trash-alt"></i> Hapus
-                                                        </button>
-                                                    </td>
-                                                </tr>
-
-                                            </tbody>
+@php $no = 1; @endphp
+@foreach($exp as $item)
+<tr>
+    <td>{{ $no++ }}</td>
+    <td>{{ $item->id_barang }}</td>
+    <td>{{ $item->nama_barang }}</td>
+    <td>{{ $item->jumlah }}</td>
+    <td>{{ $item->satuan }}</td>
+    <td>{{ $item->tanggal_kadaluarsa }}</td>
+    <td>{{ $item->keterangan }}</td>
+    <td class="action-buttons">
+        <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEditExp{{ $item->id }}">
+            <i class="fas fa-edit"></i> Edit
+        </button>
+        <form action="{{ route('exp.destroy', $item->id) }}" method="POST" style="display:inline-block">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin hapus data ini?')">
+                <i class="fas fa-trash-alt"></i> Hapus
+            </button>
+        </form>
+    </td>
+</tr>
+<!-- Modal Edit Exp -->
+<div class="modal fade" id="modalEditExp{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="modalEditExpLabel{{ $item->id }}" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalEditExpLabel{{ $item->id }}">Edit Data Barang Kedaluwarsa</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="{{ route('exp.update', $item->id) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6 col-lg-6">
+              <div class="form-group">
+                <label for="id_barang">ID Barang</label>
+                <input type="text" class="form-control" name="id_barang" value="{{ $item->id_barang }}" required>
+              </div>
+              <div class="form-group">
+                <label for="nama_barang">Nama Barang</label>
+                <input type="text" class="form-control" name="nama_barang" value="{{ $item->nama_barang }}" required>
+              </div>
+              <div class="form-group">
+                <label for="stok">Stok</label>
+                <input type="number" class="form-control" name="stok" value="{{ $item->stok }}" required>
+              </div>
+              <div class="form-group">
+                <label for="satuan">Satuan</label>
+                <input type="text" class="form-control" name="satuan" value="{{ $item->satuan }}" required>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-6">
+              <div class="form-group">
+                <label for="tanggal_kadaluarsa">Tanggal Kedaluwarsa</label>
+                <input type="date" class="form-control" name="tanggal_kadaluarsa" value="{{ $item->tanggal_kadaluarsa }}" required>
+              </div>
+              <div class="form-group">
+                <label for="jumlah">Jumlah</label>
+                <input type="number" class="form-control" name="jumlah" value="{{ $item->jumlah }}" required>
+              </div>
+              <div class="form-group">
+                <label for="keterangan">Keterangan</label>
+                <input type="text" class="form-control" name="keterangan" value="{{ $item->keterangan }}">
+              </div>
+              <div class="form-group">
+                <label for="foto">Upload Foto Barang</label>
+                <input class="form-control" type="file" name="foto">
+                @if($item->foto)
+                  <img src="{{ asset('uploads/exp/' . $item->foto) }}" width="50" class="mt-2"/>
+                @endif
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Update</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+@endforeach
+</tbody>
                                         </table>
                                     </div>
                                 </div>
@@ -308,6 +339,66 @@
         });
     </script>
 
+    <!-- Modal Tambah Barang Kadaluarsa -->
+<div class="modal fade" id="modalTambahExp" tabindex="-1" role="dialog" aria-labelledby="modalTambahExpLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTambahExpLabel">Tambah Data Barang Kedaluwarsa</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="{{ route('exp.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6 col-lg-6">
+              <div class="form-group">
+                <label for="id_barang">ID Barang</label>
+                <input type="text" class="form-control" id="id_barang" name="id_barang" required>
+              </div>
+              <div class="form-group">
+                <label for="nama_barang">Nama Barang</label>
+                <input type="text" class="form-control" id="nama_barang" name="nama_barang" required>
+              </div>
+              <div class="form-group">
+                <label for="stok">Stok</label>
+                <input type="number" class="form-control" id="stok" name="stok" required>
+              </div>
+              <div class="form-group">
+                <label for="satuan">Satuan</label>
+                <input type="text" class="form-control" id="satuan" name="satuan" required>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-6">
+              <div class="form-group">
+                <label for="tanggal_kadaluarsa">Tanggal Kedaluwarsa</label>
+                <input type="date" class="form-control" id="tanggal_kadaluarsa" name="tanggal_kadaluarsa" required>
+              </div>
+              <div class="form-group">
+                <label for="jumlah">Jumlah</label>
+                <input type="number" class="form-control" id="jumlah" name="jumlah" required>
+              </div>
+              <div class="form-group">
+                <label for="keterangan">Keterangan</label>
+                <input type="text" class="form-control" id="keterangan" name="keterangan">
+              </div>
+              <div class="form-group">
+                <label for="foto">Upload Foto Barang</label>
+                <input class="form-control" type="file" id="foto" name="foto">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Simpan</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
     
 </body>
 
