@@ -18,6 +18,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
+Route::get('/manager', function () {
+    return view('/manager');
+});
+
 Route::get('/kategori', function () {
     return view('kategori');
 });
@@ -124,4 +128,24 @@ Route::get('/suppliertambah', function () {
 
 Route::get('/laporan-retur', function () {
     return view('/laporan-retur');
+});
+
+Route::get('/dbmanager', function () {
+    return view('/dbmanager');
+});
+
+Route::get('/suppliermanager', function () {
+    return view('/suppliermanager');
+});
+
+Route::get('/masuk-mg', function () {
+    return view('/masuk-mg');
+});
+
+Route::get('/keluar-mg', function () {
+    return view('/keluar-mg');
+});
+
+Route::get('/returmg', function () {
+    return view('/returmg');
 });
