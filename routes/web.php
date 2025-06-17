@@ -18,8 +18,9 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-// Route dashboard diarahkan ke AdminController@index agar data dashboard tampil
-Route::get('/dashboard', [AdminController::class, 'index']);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
 
 Route::get('/kategori', function () {
     return view('kategori');
@@ -115,9 +116,10 @@ Route::get('/laporan-retur', [ReturBarangController::class, 'laporan'])->name('l
 Route::get('/laporan-retur/export-excel', [App\Http\Controllers\ReturBarangController::class, 'exportExcel'])->name('laporan-retur.export-excel');
 
 
-Route::get('/supplierdata', [DataSuplierController::class, 'index'])->name('supplierdata');
-Route::post('/data-supliers', [DataSuplierController::class, 'store'])->name('data-supliers.store');
-Route::put('/data-supliers/{id}', [DataSuplierController::class, 'update'])->name('data-supliers.update');
-Route::delete('/data-supliers/{id}', [DataSuplierController::class, 'destroy'])->name('data-supliers.destroy');
-Route::get('/laporan-masuk/export-excel', [App\Http\Controllers\BarangMasukController::class, 'exportExcel'])->name('laporan-masuk.export-excel');
-Route::get('/laporan-keluar/export-excel', [BarangKeluarController::class, 'exportExcel'])->name('laporan-keluar.export-excel');
+Route::get('/suppliertambah', function () {
+    return view('/suppliertambah');
+});
+
+Route::get('/laporan-retur', function () {
+    return view('/laporan-retur');
+});
