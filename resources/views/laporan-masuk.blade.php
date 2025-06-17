@@ -83,50 +83,42 @@
                                     <div class="card-title">Filter Data Barang</div>
                                 </div>
                                 <div class="card-body ">
-                                    <div class="row">
-                                        <div class="col-md-3 col-lg-3">
-                                            <div class="form-group">
-                                                <label for="idBarang">Tanggal Awal</label>
-                                                <input type="date" class="form-control" id="idBarang"
-                                                    placeholder="Masukkan Kategori Barang">
+                                    <form method="GET" action="{{ route('laporan-masuk') }}">
+                                        <div class="row">
+                                            <div class="col-md-3 col-lg-3">
+                                                <div class="form-group">
+                                                    <label for="tanggal_awal">Tanggal Awal</label>
+                                                    <input type="date" class="form-control" id="tanggal_awal" name="tanggal_awal" value="{{ request('tanggal_awal') }}">
+                                                </div>
                                             </div>
-
-
-                                        </div>
-                                        <div class="col-md-3 col-lg-3">
-                                            <div class="form-group">
-                                                <label for="idBarang">Tanggal Akhir</label>
-                                                <input type="date" class="form-control" id="idBarang"
-                                                    placeholder="Masukkan Kategori Barang">
+                                            <div class="col-md-3 col-lg-3">
+                                                <div class="form-group">
+                                                    <label for="tanggal_akhir">Tanggal Akhir</label>
+                                                    <input type="date" class="form-control" id="tanggal_akhir" name="tanggal_akhir" value="{{ request('tanggal_akhir') }}">
+                                                </div>
                                             </div>
-
-
+                                            <div class="col-md-4 py-3 py-md-0 mt-sm-4 d-flex gap-2 align-items-center">
+                                                <button class="btn btn-primary mr-4" type="submit">
+                                                    <span class="btn-label">
+                                                        <i class="fas fa-eye"></i>
+                                                    </span>
+                                                    Tampilkan
+                                                </button>
+                                                <a class="btn btn-success" href="{{ route('laporan-masuk.export-excel', ['tanggal_awal' => request('tanggal_awal'), 'tanggal_akhir' => request('tanggal_akhir')]) }}">
+                                                    <span class="btn-label">
+                                                        <i class="fas fa-file-excel"></i>
+                                                    </span>
+                                                    Kirim Data (Excel)
+                                                </a>
+                                                <button class="btn btn-warning mr-4" type="button" onclick="window.print()">
+                                                    <span class="btn-label">
+                                                        <i class="icon-printer"></i>
+                                                    </span>
+                                                    Cetak Data
+                                                </button>
+                                            </div>
                                         </div>
-
-                                        <div class="col-md-4 py-3 py-md-0 mt-sm-4 d-flex gap-2 align-items-center">
-                                            <button class="btn btn-primary mr-4" data-toggle="modal"
-                                                data-target="#modalTambahBarang">
-                                                <span class="btn-label">
-                                                    <i class="fas fa-eye"></i>
-                                                </span>
-                                                Tampilkan
-                                            </button>
-                                            <button class="btn btn-warning mr-4">
-                                                <span class="btn-label">
-                                                    <i class="icon-printer"></i>
-                                                </span>
-                                                Cetak Data
-                                            </button>
-                                            <button class="btn btn-success">
-                                                <span class="btn-label">
-                                                    <i class="  fas fa-file-excel"></i>
-                                                </span>
-                                                Kirim Data
-                                            </button>
-                                        </div>
-
-
-                                    </div>
+                                    </form>
                                 </div>
 
                             </div>
@@ -153,7 +145,6 @@
                                                     <th>Nama Barang</th>
                                                     <th>Stok</th>
                                                     <th>Satuan</th>
-                                                    <th>Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tfoot>
@@ -163,58 +154,19 @@
                                                     <th>Nama Barang</th>
                                                     <th>Stok</th>
                                                     <th>Satuan</th>
-                                                    <th>Aksi</th>
                                                 </tr>
                                             </tfoot>
                                             <tbody>
+                                                @php $no = 1; @endphp
+                                                @foreach($barangmasuk as $bm)
                                                 <tr>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-
-                                                    <td class="action-buttons">
-                                                        <button class="btn btn-sm btn-warning">
-                                                            <i class="fas fa-edit"></i> Edit
-                                                        </button>
-                                                        <button class="btn btn-sm btn-danger">
-                                                            <i class="fas fa-trash-alt"></i> Hapus
-                                                        </button>
-                                                    </td>
+                                                    <td>{{ $no++ }}</td>
+                                                    <td>{{ $bm->databarang->id_barang ?? '-' }}</td>
+                                                    <td>{{ $bm->databarang->nama ?? '-' }}</td>
+                                                    <td>{{ $bm->jumlah_masuk }}</td>
+                                                    <td>{{ $bm->satuan->nama ?? '-' }}</td>
                                                 </tr>
-                                                <tr>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-
-                                                    <td class="action-buttons">
-                                                        <button class="btn btn-sm btn-warning">
-                                                            <i class="fas fa-edit"></i> Edit
-                                                        </button>
-                                                        <button class="btn btn-sm btn-danger">
-                                                            <i class="fas fa-trash-alt"></i> Hapus
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td class="action-buttons">
-                                                        <button class="btn btn-sm btn-warning">
-                                                            <i class="fas fa-edit"></i> Edit
-                                                        </button>
-                                                        <button class="btn btn-sm btn-danger">
-                                                            <i class="fas fa-trash-alt"></i> Hapus
-                                                        </button>
-                                                    </td>
-                                                </tr>
-
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>

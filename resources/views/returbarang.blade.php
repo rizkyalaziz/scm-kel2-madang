@@ -70,20 +70,13 @@
 								
                             </div>
 							<div class="ml-md-auto py-2 py-md-0">
-								<a href="/tambahretur">
-								<button class="btn btn-primary mr-3 rounded-2">
-									<span class="btn-label">
-										<i class="fa fa-plus"></i>
-									</span>
-									Tambah Data
-								</button>
-								</a>
-								<button class="btn btn-success">
-									<span class="btn-label">
-										<i class="fa fa-check"></i>
-									</span>
-									Kirim Data
-								</button>
+								<!-- Tombol Tambah Data -->
+<div class="ml-md-auto py-2 py-md-0">
+    <button class="btn btn-info" data-toggle="modal" data-target="#modalTambahRetur">
+        <i class="fa fa-plus"></i> Tambah Data
+    </button>
+</div>
+
 							</div>
 
 
@@ -97,39 +90,11 @@
                             <div class="card">
                                 <div class="card-header">
                                     <div class="card-title">Data Barang Retur</div>
+                                    <!-- Hapus tombol tambah data di header card, sisakan tombol/modal yang di bawah saja -->
                                 </div>
                                 <div class="card-body ">
-                                    <div class="row">
-										
-										<div class="col-md-12 col-lg-12">
-											<div class="form-group d-flex justify-content-center align-items-center flex-wrap">
-												<img src="../assets/img/LogoMieGacoan.png" alt="Logo PT" style="margin-top: -30px; margin-left: -500px; width: 150px; margin-right: 325px;" class="me-5">
-												<div class="card-title mb-0 h5">PT. PESTA PORA ABADI</div>
-											</div>
-										</div>
-                                        <div class="col-md-4 col-lg-4">
-                                            <div class="form-group">
-                                                <label for="cabang">Nama Cabang</label>
-                                                <input type="text" class="form-control" id="cabang"
-                                                    placeholder="Masukkan Cabang">
-                                            </div>
-                                        </div>
-										<div class="col-md-4 col-lg-4">
-										<div class="form-group">
-                                                <label for="stokker">Nama Stokker</label>
-                                                <input type="text" class="form-control" id="stokker"
-                                                    placeholder="Masukkan Nama Stokker">
-                                            </div>
-										</div>
-
-                                        <div class="col-md-4 col-lg-4">
-                                            <div class="form-group">
-                                                <label for="idBarang">Tanggal</label>
-                                                <input type="date" class="form-control" id="idBarang"
-                                                    placeholder="Masukkan Kategori Barang">
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <!-- Hapus form input yang langsung di halaman, hanya tampilkan tombol/modal -->
+                                    <!-- Modal Tambah Retur sudah ada di bawah -->
                                 </div>
 
                             </div>
@@ -172,57 +137,20 @@
                                                 </tr>
                                             </tfoot>
                                             <tbody>
+                                                @php $no = 1; @endphp
+                                                @foreach($retur as $item)
                                                 <tr>
-                                                    <td>-</td>
-													<td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-
+                                                    <td>{{ $no++ }}</td>
+                                                    <td>{{ $item->barang_id }}</td>
+                                                    <td>{{ $item->nama_barang }}</td>
+                                                    <td>{{ $item->jumlah }}</td>
+                                                    <td>{{ $item->keterangan }}</td>
+                                                    <td>{{ $item->tanggal_retur }}</td>
                                                     <td class="action-buttons">
-                                                        <button class="btn btn-sm btn-warning">
-                                                            <i class="fas fa-edit"></i> Edit
-                                                        </button>
-                                                        <button class="btn btn-sm btn-danger">
-                                                            <i class="fas fa-trash-alt"></i> Hapus
-                                                        </button>
+                                                        <!-- Tombol edit/hapus bisa ditambahkan di sini -->
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td>-</td>
-													<td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-
-                                                    <td class="action-buttons">
-                                                        <button class="btn btn-sm btn-warning">
-                                                            <i class="fas fa-edit"></i> Edit
-                                                        </button>
-                                                        <button class="btn btn-sm btn-danger">
-                                                            <i class="fas fa-trash-alt"></i> Hapus
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>-</td>
-													<td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td class="action-buttons">
-                                                        <button class="btn btn-sm btn-warning">
-                                                            <i class="fas fa-edit"></i> Edit
-                                                        </button>
-                                                        <button class="btn btn-sm btn-danger">
-                                                            <i class="fas fa-trash-alt"></i> Hapus
-                                                        </button>
-                                                    </td>
-                                                </tr>
-
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -303,6 +231,111 @@
         });
     </script>
 
+    <!-- Modal Data Barang -->
+<div class="modal fade" id="modalDataBarang" tabindex="-1" role="dialog" aria-labelledby="modalDataBarangLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalDataBarangLabel">Tambah Data</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>ID Barang</th>
+                <th>Nama Barang</th>
+                <th>Kategori</th>
+                <th>Stok Minimum</th>
+                <th>Satuan</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach(App\Models\Databarang::with(['kategori','satuan'])->get() as $barang)
+              <tr>
+                <td>{{ $barang->id_barang }}</td>
+                <td>{{ $barang->nama }}</td>
+                <td>{{ $barang->kategori->nama ?? '-' }}</td>
+                <td>{{ $barang->stok_minimum }}</td>
+                <td>{{ $barang->satuan->nama ?? '-' }}</td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Tambah Retur -->
+<div class="modal fade" id="modalTambahRetur" tabindex="-1" role="dialog" aria-labelledby="modalTambahReturLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTambahReturLabel">Tambah Data Barang Retur</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="{{ route('returbarang.store') }}" method="POST">
+        @csrf
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="barang_id">Pilih Barang</label>
+            <select class="form-control" id="barang_id" name="barang_id" required onchange="updateNamaBarang()">
+              <option value="">-- Pilih Barang --</option>
+              @foreach(App\Models\Databarang::all() as $barang)
+                <option value="{{ $barang->id }}" data-nama="{{ $barang->nama }}">{{ $barang->id_barang }} - {{ $barang->nama }}</option>
+              @endforeach
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="nama_barang">Nama Barang</label>
+            <input type="text" class="form-control" id="nama_barang" name="nama_barang" readonly required>
+          </div>
+          <div class="form-group">
+            <label for="jumlah">Jumlah</label>
+            <input type="number" class="form-control" id="jumlah" name="jumlah" required>
+          </div>
+          <div class="form-group">
+            <label for="keterangan">Keterangan</label>
+            <input type="text" class="form-control" id="keterangan" name="keterangan">
+          </div>
+          <div class="form-group">
+            <label for="tanggal_retur">Tanggal Retur</label>
+            <input type="date" class="form-control" id="tanggal_retur" name="tanggal_retur" required>
+          </div>
+          <div class="form-group">
+            <label for="cabang">Cabang</label>
+            <input type="text" class="form-control" id="cabang" name="cabang">
+          </div>
+          <div class="form-group">
+            <label for="stokker">Stokker</label>
+            <input type="text" class="form-control" id="stokker" name="stokker">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Simpan</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+function updateNamaBarang() {
+    var select = document.getElementById('barang_id');
+    var nama = select.options[select.selectedIndex].getAttribute('data-nama');
+    document.getElementById('nama_barang').value = nama || '';
+}
+</script>
     
 </body>
 

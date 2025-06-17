@@ -11,14 +11,23 @@ class BarangMasuk extends Model
     protected $table = 'barang_masuk';
     protected $fillable = [
         'databarang_id',
-        'jumlah',
+        'satuan_id',
+        'stok',
+        'jumlah_masuk',
         'tanggal_masuk',
         'keterangan',
-        'gambar'
+        'sisa_stok',
+        'gambar',
+        'jumlah'
     ];
 
     public function databarang()
     {
-        return $this->belongsTo(Databarang::class);
+        return $this->belongsTo(Databarang::class, 'databarang_id');
+    }
+    
+    public function satuan()
+    {
+        return $this->belongsTo(Satuan::class, 'satuan_id');
     }
 }

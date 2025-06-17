@@ -9,14 +9,17 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\DatabarangController;
 use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\BarangKeluarController;
+use App\Http\Controllers\DataSuplierController;
+use App\Http\Controllers\ExpController;
+use App\Http\Controllers\ReturBarangController;
+
 
 Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+// Route dashboard diarahkan ke AdminController@index agar data dashboard tampil
+Route::get('/dashboard', [AdminController::class, 'index']);
 
 Route::get('/manager', function () {
     return view('/manager');
@@ -58,13 +61,13 @@ Route::get('/barangkeluar', function () {
     return view('/barangkeluar');
 });
 
-
 Route::resource('satuan', SatuanController::class)->except(['show', 'create', 'edit']);
 Route::resource('jenis', JenisController::class)->except(['show', 'create', 'edit']);
 Route::resource('kategori', KategoriController::class)->except(['show', 'create', 'edit']);
 Route::resource('databarang', DatabarangController::class)->except(['show', 'create', 'edit']);
 Route::resource('barangmasuk', BarangMasukController::class);
 Route::resource('barangkeluar', BarangKeluarController::class);
+Route::apiResource('data-supliers', DataSuplierController::class);
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/', [SesiController::class, 'index'])->name('login');
@@ -80,27 +83,20 @@ Route::middleware(['auth'])->group(function () {
     Route::get('logout', [SesiController::class, 'logout']);
 });
 
-
-
 Route::get('/tambahmasuk', function () {
     return view('/tambahmasuk');
 });
 
-Route::get('/laporan-masuk', function () {
-    return view('/laporan-masuk');
-});
+Route::get('/laporan-masuk', [App\Http\Controllers\BarangMasukController::class, 'laporan'])->name('laporan-masuk');
 
 Route::get('/tambahkeluar', function () {
     return view('/tambahkeluar');
 });
 
-Route::get('/laporan-keluar', function () {
-    return view('/laporan-keluar');
-});
+Route::get('/laporan-keluar', [BarangKeluarController::class, 'laporan'])->name('laporan-keluar');
 
-Route::get('/returbarang', function () {
-    return view('/returbarang');
-});
+Route::get('/returbarang', [App\Http\Controllers\ReturBarangController::class, 'index'])->name('returbarang');
+Route::post('/returbarang', [App\Http\Controllers\ReturBarangController::class, 'store'])->name('returbarang.store');
 
 Route::get('/tambahretur', function () {
     return view('/tambahretur');
@@ -110,21 +106,19 @@ Route::get('/akun', function () {
     return view('/akun');
 });
 
-Route::get('/exp', function () {
-    return view('/exp');
-});
+Route::get('/exp', [ExpController::class, 'index'])->name('exp');
+Route::post('/exp', [ExpController::class, 'store'])->name('exp.store');
+Route::post('/exp/{id}/update', [ExpController::class, 'update'])->name('exp.update');
+Route::delete('/exp/{id}', [ExpController::class, 'destroy'])->name('exp.destroy');
 
 Route::get('/exptambah', function () {
     return view('/exptambah');
 });
 
-Route::get('/supplierdata', function () {
-    return view('/supplierdata');
-});
+Route::get('/laporan-retur', [ReturBarangController::class, 'laporan'])->name('laporan-retur');
+Route::get('/laporan-retur/export-excel', [App\Http\Controllers\ReturBarangController::class, 'exportExcel'])->name('laporan-retur.export-excel');
 
-Route::get('/suppliertambah', function () {
-    return view('/suppliertambah');
-});
+
 
 Route::get('/laporan-retur', function () {
     return view('/laporan-retur');
@@ -149,3 +143,4 @@ Route::get('/keluar-mg', function () {
 Route::get('/returmg', function () {
     return view('/returmg');
 });
+

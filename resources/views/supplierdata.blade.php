@@ -69,14 +69,12 @@
 								
                             </div>
 							<div class="ml-md-auto py-2 py-md-0">
-								<a href="/suppliertambah">
-								<button class="btn btn-primary mr-3 rounded-2">
+								<button class="btn btn-primary mr-3 rounded-2" data-toggle="modal" data-target="#modalTambahSupplier">
 									<span class="btn-label">
 										<i class="fa fa-plus"></i>
 									</span>
 									Tambah Data
 								</button>
-								</a>
 								<button class="btn btn-success">
 									<span class="btn-label">
 										<i class="fa fa-check"></i>
@@ -124,62 +122,69 @@
                                                 </tr>
                                             </tfoot>
                                             <tbody>
-                                                <tr>
-                                                    <td>-</td>
-													<td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-													<td>-</td>
-                                                    
-                                                    
-
-                                                    <td class="action-buttons">
-                                                        <button class="btn btn-sm btn-warning">
-                                                            <i class="fas fa-edit"></i> Edit
-                                                        </button>
-                                                        <button class="btn btn-sm btn-danger">
-                                                            <i class="fas fa-trash-alt"></i> Hapus
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>-</td>
-													<td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-													<td>-</td>
-                                                    
-
-                                                    <td class="action-buttons">
-                                                        <button class="btn btn-sm btn-warning">
-                                                            <i class="fas fa-edit"></i> Edit
-                                                        </button>
-                                                        <button class="btn btn-sm btn-danger">
-                                                            <i class="fas fa-trash-alt"></i> Hapus
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>-</td>
-													<td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-													<td>-</td>
-                                                    
-                                                    <td class="action-buttons">
-                                                        <button class="btn btn-sm btn-warning">
-                                                            <i class="fas fa-edit"></i> Edit
-                                                        </button>
-                                                        <button class="btn btn-sm btn-danger">
-                                                            <i class="fas fa-trash-alt"></i> Hapus
-                                                        </button>
-                                                    </td>
-                                                </tr>
-
-                                            </tbody>
+@php $no = 1; @endphp
+@foreach($dataSupliers as $suplier)
+<tr>
+    <td>{{ $no++ }}</td>
+    <td>{{ $suplier->id }}</td>
+    <td>{{ $suplier->nama }}</td>
+    <td>{{ $suplier->no_telepon }}</td>
+    <td>{{ $suplier->email }}</td>
+    <td>{{ $suplier->alamat }}</td>
+    <td class="action-buttons">
+        <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEditSupplier{{ $suplier->id }}">
+            <i class="fas fa-edit"></i> Edit
+        </button>
+        <form action="{{ route('data-supliers.destroy', $suplier->id) }}" method="POST" style="display:inline-block;">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')">
+                <i class="fas fa-trash-alt"></i> Hapus
+            </button>
+        </form>
+    </td>
+</tr>
+<!-- Modal Edit Supplier -->
+<div class="modal fade" id="modalEditSupplier{{ $suplier->id }}" tabindex="-1" role="dialog" aria-labelledby="modalEditSupplierLabel{{ $suplier->id }}" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalEditSupplierLabel{{ $suplier->id }}">Edit Supplier</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="{{ route('data-supliers.update', $suplier->id) }}" method="POST">
+        @csrf
+        @method('PUT')
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="namaSupplierEdit{{ $suplier->id }}">Nama Supplier</label>
+            <input type="text" class="form-control" id="namaSupplierEdit{{ $suplier->id }}" name="nama" value="{{ $suplier->nama }}" required>
+          </div>
+          <div class="form-group">
+            <label for="noTelpEdit{{ $suplier->id }}">No Telpon</label>
+            <input type="text" class="form-control" id="noTelpEdit{{ $suplier->id }}" name="no_telepon" value="{{ $suplier->no_telepon }}" required>
+          </div>
+          <div class="form-group">
+            <label for="emailEdit{{ $suplier->id }}">Email</label>
+            <input type="email" class="form-control" id="emailEdit{{ $suplier->id }}" name="email" value="{{ $suplier->email }}" required>
+          </div>
+          <div class="form-group">
+            <label for="alamatEdit{{ $suplier->id }}">Alamat</label>
+            <textarea class="form-control" id="alamatEdit{{ $suplier->id }}" name="alamat" required>{{ $suplier->alamat }}</textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Update</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+@endforeach
+</tbody>
                                         </table>
                                     </div>
                                 </div>
@@ -259,6 +264,44 @@
         });
     </script>
 
+    <!-- Modal Tambah Supplier -->
+<div class="modal fade" id="modalTambahSupplier" tabindex="-1" role="dialog" aria-labelledby="modalTambahSupplierLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTambahSupplierLabel">Tambah Supplier</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="{{ route('data-supliers.store') }}" method="POST">
+        @csrf
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="namaSupplier">Nama Supplier</label>
+            <input type="text" class="form-control" id="namaSupplier" name="nama" required>
+          </div>
+          <div class="form-group">
+            <label for="noTelp">No Telpon</label>
+            <input type="text" class="form-control" id="noTelp" name="no_telepon" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="alamat">Alamat</label>
+            <textarea class="form-control" id="alamat" name="alamat" required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Submit</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
     
 </body>
 
