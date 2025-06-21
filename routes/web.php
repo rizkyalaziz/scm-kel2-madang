@@ -12,27 +12,19 @@ use App\Http\Controllers\BarangKeluarController;
 use App\Http\Controllers\DataSuplierController;
 use App\Http\Controllers\ExpController;
 use App\Http\Controllers\ReturBarangController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\NotifikasiController;
 
 
 Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::get('/kategori', function () {
-    return view('kategori');
-});
-
-Route::get('/jenis', function () {
-    return view('jenis');
-});
-
-Route::get('/satuan', function () {
-    return view('/satuan');
-});
+Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori');
+Route::get('/jenis', [JenisController::class, 'index'])->name('jenis');
+Route::get('/satuan', [SatuanController::class, 'index'])->name('satuan');
 
 Route::get('/tambahbarang', function () {
     return view('/tambahbarang');
@@ -85,12 +77,14 @@ Route::get('/tambahmasuk', function () {
 });
 
 Route::get('/laporan-masuk', [App\Http\Controllers\BarangMasukController::class, 'laporan'])->name('laporan-masuk');
+Route::get('/laporan-masuk/export-excel', [BarangMasukController::class, 'exportExcel'])->name('laporan-masuk.export-excel');
 
 Route::get('/tambahkeluar', function () {
     return view('/tambahkeluar');
 });
 
 Route::get('/laporan-keluar', [BarangKeluarController::class, 'laporan'])->name('laporan-keluar');
+Route::get('/laporan-keluar/export-excel', [BarangKeluarController::class, 'exportExcel'])->name('laporan-keluar.export-excel');
 
 Route::get('/returbarang', [App\Http\Controllers\ReturBarangController::class, 'index'])->name('returbarang');
 Route::post('/returbarang', [App\Http\Controllers\ReturBarangController::class, 'store'])->name('returbarang.store');
@@ -120,6 +114,4 @@ Route::get('/suppliertambah', function () {
     return view('/suppliertambah');
 });
 
-Route::get('/laporan-retur', function () {
-    return view('/laporan-retur');
-});
+Route::get('/notifikasi', [NotifikasiController::class, 'index'])->name('notifikasi');

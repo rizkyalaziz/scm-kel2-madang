@@ -141,30 +141,48 @@
                                             <thead class="table-dark">
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>ID Barang</th>
+                                                    <th>Tanggal Masuk</th>
                                                     <th>Nama Barang</th>
-                                                    <th>Stok</th>
                                                     <th>Satuan</th>
+                                                    <th>Stok Sebelum</th>
+                                                    <th>Jumlah Masuk</th>
+                                                    <th>Sisa Stok</th>
+                                                    <th>Keterangan</th>
+                                                    <th>Gambar</th>
                                                 </tr>
                                             </thead>
                                             <tfoot>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>ID Barang</th>
+                                                    <th>Tanggal Masuk</th>
                                                     <th>Nama Barang</th>
-                                                    <th>Stok</th>
                                                     <th>Satuan</th>
+                                                    <th>Stok Sebelum</th>
+                                                    <th>Jumlah Masuk</th>
+                                                    <th>Sisa Stok</th>
+                                                    <th>Keterangan</th>
+                                                    <th>Gambar</th>
                                                 </tr>
                                             </tfoot>
                                             <tbody>
                                                 @php $no = 1; @endphp
-                                                @foreach($barangmasuk as $bm)
+                                                @foreach($barangmasuk as $item)
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
-                                                    <td>{{ $bm->databarang->id_barang ?? '-' }}</td>
-                                                    <td>{{ $bm->databarang->nama ?? '-' }}</td>
-                                                    <td>{{ $bm->jumlah_masuk }}</td>
-                                                    <td>{{ $bm->satuan->nama ?? '-' }}</td>
+                                                    <td>{{ $item->tanggal_masuk }}</td>
+                                                    <td>{{ $item->nama_barang }}</td>
+                                                    <td>{{ $item->satuan->nama ?? '-' }}</td>
+                                                    <td>{{ $item->stok }}</td>
+                                                    <td>{{ $item->jumlah_masuk }}</td>
+                                                    <td>{{ $item->sisa_stok }}</td>
+                                                    <td>{{ $item->keterangan }}</td>
+                                                    <td>
+                                                        @if($item->gambar)
+                                                            <img src="{{ asset('storage/' . $item->gambar) }}" alt="Gambar" width="50">
+                                                        @else
+                                                            -
+                                                        @endif
+                                                    </td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>

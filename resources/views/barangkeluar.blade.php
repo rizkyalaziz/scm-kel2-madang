@@ -108,14 +108,15 @@
 												<tr>
 													<th>No</th>
 													<th>Nama Barang</th>
+													<th>Satuan</th>
+													<th>Stok</th>
 													<th>Jumlah</th>
+													<th>Sisa Stok</th>
 													<th>Tanggal Keluar</th>
 													<th>Keterangan</th>
 													<th>Aksi</th>
 												</tr>
 											</thead>
-
-													
 											<tfoot>
 												<tr>
 													<th>No</th>
@@ -133,8 +134,11 @@
 												<tr>
 
 													<td>{{ $i+1 }}</td>
-													<td>{{ $item->nama_barang }}</td>
-													<td>{{ $item->jumlah }}</td>
+													<td>{{ optional($item->databarang)->nama ?? '-' }}</td>
+													<td>{{ optional($item->satuan)->nama ?? '-' }}</td>
+													<td>{{ $item->stok ?? '-' }}</td>
+													<td>{{ $item->jumlah_keluar }}</td>
+													<td>{{ $item->sisa_stok ?? '-' }}</td>
 													<td>{{ $item->tanggal_keluar }}</td>
 													<td>{{ $item->keterangan }}</td>
 													<td>
@@ -195,12 +199,34 @@
 																@method('PUT')
 																<div class="modal-body">
 																	<div class="form-group">
-																		<label for="nama_barang{{ $item->id }}">Nama Barang</label>
-																		<input type="text" class="form-control" id="nama_barang{{ $item->id }}" name="nama_barang" value="{{ $item->nama_barang }}" required>
+																		<label for="databarang_id_edit{{ $item->id }}">Nama Barang</label>
+																		<select class="form-control" id="databarang_id_edit{{ $item->id }}" name="databarang_id" required>
+																			<option value="">-- Pilih Barang --</option>
+																			@foreach($databarang as $barang)
+																				<option value="{{ $barang->id }}" data-satuan="{{ $barang->satuan_id }}" data-stok="{{ $barang->jumlah_stok }}" {{ $item->databarang_id == $barang->id ? 'selected' : '' }}>{{ $barang->nama }}</option>
+																			@endforeach
+																		</select>
 																	</div>
 																	<div class="form-group">
-																		<label for="jumlah{{ $item->id }}">Jumlah</label>
-																		<input type="number" class="form-control" id="jumlah{{ $item->id }}" name="jumlah" value="{{ $item->jumlah }}" min="1" required>
+																		<label for="satuan_id_edit{{ $item->id }}">Satuan</label>
+																		<select class="form-control" id="satuan_id_edit{{ $item->id }}" name="satuan_id" required>
+																			<option value="">-- Pilih Satuan --</option>
+																			@foreach($satuan as $sat)
+																				<option value="{{ $sat->id }}" {{ $item->satuan_id == $sat->id ? 'selected' : '' }}>{{ $sat->nama }}</option>
+																			@endforeach
+																		</select>
+																	</div>
+																	<div class="form-group">
+																		<label for="stok_edit{{ $item->id }}">Stok</label>
+																		<input type="number" class="form-control" id="stok_edit{{ $item->id }}" name="stok" value="{{ $item->stok ?? '' }}" min="0" required>
+																	</div>
+																	<div class="form-group">
+																		<label for="jumlah_keluar_edit{{ $item->id }}">Jumlah</label>
+																		<input type="number" class="form-control" id="jumlah_keluar_edit{{ $item->id }}" name="jumlah_keluar" value="{{ $item->jumlah_keluar }}" min="1" required>
+																	</div>
+																	<div class="form-group">
+																		<label for="sisa_stok_edit{{ $item->id }}">Sisa Stok</label>
+																		<input type="number" class="form-control" id="sisa_stok_edit{{ $item->id }}" name="sisa_stok" value="{{ $item->stok ? $item->stok - $item->jumlah : '' }}" min="0" readonly>
 																	</div>
 																	<div class="form-group">
 																		<label for="tanggal_keluar{{ $item->id }}">Tanggal Keluar</label>
@@ -245,12 +271,38 @@
 													@csrf
 													<div class="modal-body">
 														<div class="form-group">
-															<label for="nama_barang">Nama Barang</label>
-															<input type="text" class="form-control" id="nama_barang" name="nama_barang" placeholder="Masukkan Nama Barang" required>
+															<label for="databarang_id">Nama Barang</label>
+															<select class="form-control" id="databarang_id" name="databarang_id" required>
+																<option value="">-- Pilih Barang --</option>
+																@foreach($databarang as $barang)
+																	<option value="{{ $barang->id }}"
+																		data-satuan="{{ $barang->satuan_id }}"
+																		data-stok="{{ $barang->jumlah_stok }}">
+																		{{ $barang->nama }}
+																	</option>
+																@endforeach
+															</select>
 														</div>
 														<div class="form-group">
-															<label for="jumlah">Jumlah</label>
-															<input type="number" class="form-control" id="jumlah" name="jumlah" min="1" required>
+															<label for="satuan_id">Satuan</label>
+															<select class="form-control" id="satuan_id" name="satuan_id" required>
+																<option value="">-- Pilih Satuan --</option>
+																@foreach($satuan as $sat)
+																	<option value="{{ $sat->id }}">{{ $sat->nama }}</option>
+																@endforeach
+															</select>
+														</div>
+														<div class="form-group">
+															<label for="stok">Stok</label>
+															<input type="number" class="form-control" id="stok" name="stok" min="0" required>
+														</div>
+														<div class="form-group">
+															<label for="jumlah_keluar">Jumlah</label>
+															<input type="number" class="form-control" id="jumlah_keluar" name="jumlah_keluar" min="1" required>
+														</div>
+														<div class="form-group">
+															<label for="sisa_stok">Sisa Stok</label>
+															<input type="number" class="form-control" id="sisa_stok" name="sisa_stok" min="0" readonly>
 														</div>
 														<div class="form-group">
 															<label for="tanggal_keluar">Tanggal Keluar</label>
@@ -348,6 +400,49 @@
 				$('#addRowModal').modal('hide');
 
 			});
+			$('#databarang_id').on('change', function() {
+				var satuanId = $('option:selected', this).data('satuan');
+				var stok = $('option:selected', this).data('stok');
+				$('#satuan_id').val(satuanId);
+				$('#stok').val(stok);
+				$('#jumlah_keluar').val('');
+				$('#sisa_stok').val(stok);
+			});
+			$('#jumlah_keluar').on('input', function() {
+				var stok = parseInt($('#stok').val()) || 0;
+				var jumlah = parseInt($(this).val()) || 0;
+				if (jumlah > stok) {
+					alert('Jumlah keluar tidak boleh melebihi stok!');
+					$(this).val(stok);
+					jumlah = stok;
+				}
+				var sisa = stok - jumlah;
+				if (sisa < 0) sisa = 0;
+				$('#sisa_stok').val(sisa);
+			});
+			// Autofill & sisa stok untuk modal edit
+			@foreach($barangkeluar as $item)
+			$('#databarang_id_edit{{ $item->id }}').on('change', function() {
+				var satuanId = $('option:selected', this).data('satuan');
+				var stok = $('option:selected', this).data('stok');
+				$('#satuan_id_edit{{ $item->id }}').val(satuanId);
+				$('#stok_edit{{ $item->id }}').val(stok);
+				$('#jumlah_keluar_edit{{ $item->id }}').val('');
+				$('#sisa_stok_edit{{ $item->id }}').val(stok);
+			});
+			$('#jumlah_keluar_edit{{ $item->id }}').on('input', function() {
+				var stok = parseInt($('#stok_edit{{ $item->id }}').val()) || 0;
+				var jumlah = parseInt($(this).val()) || 0;
+				if (jumlah > stok) {
+					alert('Jumlah keluar tidak boleh melebihi stok!');
+					$(this).val(stok);
+					jumlah = stok;
+				}
+				var sisa = stok - jumlah;
+				if (sisa < 0) sisa = 0;
+				$('#sisa_stok_edit{{ $item->id }}').val(sisa);
+			});
+			@endforeach
 		});
 	</script>
 </body>

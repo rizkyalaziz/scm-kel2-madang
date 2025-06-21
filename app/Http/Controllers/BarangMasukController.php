@@ -33,7 +33,13 @@ class BarangMasukController extends Controller
         if ($request->hasFile('gambar')) {
             $data['gambar'] = $request->file('gambar')->store('barangmasuk', 'public');
         }
-        BarangMasuk::create($data);
+        $barangMasuk = BarangMasuk::create($data);
+        // Update jumlah_stok barang
+        $barang = \App\Models\Databarang::find($request->databarang_id);
+        if ($barang) {
+            $barang->jumlah_stok += $request->jumlah_masuk;
+            $barang->save();
+        }
         return redirect()->route('barangmasuk.index')->with('success', 'Data barang masuk berhasil ditambahkan!');
     }
 

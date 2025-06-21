@@ -98,7 +98,7 @@
                                             
                                             <div class="form-group">
 												<label for="satuan">Stok</label>
-												<input type="number" class="form-control" id="stok">
+												<input type="text" class="form-control" id="stok" value="{{ isset($item) && $item->stok !== null ? $item->stok : '-' }}">
 											</div>
 											<div class="form-group">
 												<label for="defaultSelect">Satuan</label>
