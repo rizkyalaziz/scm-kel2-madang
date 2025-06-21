@@ -1,3 +1,4 @@
+
 <x-layout>
     <x-header :jumlah_notif="$jumlah_notif" :barang_minimum="$barang_minimum" />
     <div class="container mt-5">
@@ -103,3 +104,4 @@
         </div>
     </div>
 </x-layout>
+
