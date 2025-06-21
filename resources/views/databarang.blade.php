@@ -31,7 +31,7 @@
 	<div class="wrapper">
 		<div class="main-header">
 			<!-- Logo Header -->
-			<x-header></x-header>
+			<x-header :jumlah_notif="$jumlah_notif" :barang_minimum="$barang_minimum" />
 			<!-- End Logo Header -->
 
 			<!-- Navbar Header -->
@@ -108,22 +108,24 @@
 													
 													<th>Kategori</th>
 													<th>Jenis</th>
-													<th>Stok Minimum</th>
+													<th>Jumlah Stok</th>
 													<th>Satuan</th>
+													<th>Stok Minimum</th>
 													
 													<th>Aksi</th>
 												</tr>
 											</thead>
 											<tbody>
 												@foreach($barang as $i => $item)
-												<tr>
+												<tr @if($item->jumlah_stok <= $item->stok_minimum) style="background-color: #ffe5e5; color: #c0392b; font-weight: bold;" title="Stok di bawah minimum!" @endif>
 													<td>{{ $i+1 }}</td>
 													<td>{{ $item->id_barang }}</td>
 													<td>{{ $item->nama }}</td>
-													<td>{{ $item->kategori->nama ?? '-' }}</td>
-													<td>{{ $item->jenis->nama ?? '-' }}</td>
+													<td>{{ optional($item->kategori)->nama ?? '-' }}</td>
+													<td>{{ optional($item->jenis)->nama ?? '-' }}</td>
+													<td>{{ $item->jumlah_stok }}</td>
+													<td>{{ optional($item->satuan)->nama ?? '-' }}</td>
 													<td>{{ $item->stok_minimum }}</td>
-													<td>{{ $item->satuan->nama ?? '-' }}</td>
 													<td>
 														<form action="{{ route('databarang.destroy', $item->id) }}" method="POST" style="display:inline-block">
 															@csrf
@@ -134,8 +136,8 @@
 														</form>
 														<button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalEditBarang{{ $item->id }}">
 															<i class="fa fa-edit"></i> Edit
-
-													
+														</button>
+													</td>
 												</tr>
 												<!-- Modal Edit Barang -->
 												<div class="modal fade" id="modalEditBarang{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="modalEditBarangLabel{{ $item->id }}" aria-hidden="true">
@@ -180,8 +182,8 @@
 												                </select>
 												              </div>
 												              <div class="form-group">
-												                <label for="editStock{{ $item->id }}">Stock Minimum</label>
-												                <input type="number" class="form-control" id="editStock{{ $item->id }}" name="stok_minimum" value="{{ $item->stok_minimum }}" required>
+												                <label for="editStock{{ $item->id }}">Jumlah Stok</label>
+												                <input type="number" class="form-control" id="editStock{{ $item->id }}" name="jumlah_stok" value="{{ $item->jumlah_stok }}" required>
 												              </div>
 												              <div class="form-group">
 												                <label for="editSatuan{{ $item->id }}">Satuan</label>
@@ -191,6 +193,14 @@
 												                    <option value="{{ $sat->id }}" {{ $item->satuan_id == $sat->id ? 'selected' : '' }}>{{ $sat->nama }}</option>
 												                  @endforeach
 												                </select>
+												              </div>
+												              <div class="form-group">
+												                <label for="editKodeBarang{{ $item->id }}">Kode Barang</label>
+												                <input type="text" class="form-control" id="editKodeBarang{{ $item->id }}" name="kode" value="{{ $item->kode }}" required>
+												              </div>
+												              <div class="form-group">
+												                <label for="editStokMinimum{{ $item->id }}">Stok Minimum</label>
+												                <input type="number" class="form-control" id="editStokMinimum{{ $item->id }}" name="stok_minimum" value="{{ $item->stok_minimum }}" required>
 												              </div>
 												            </div>
 												            <div class="col-md-5 col-lg-5">
@@ -336,8 +346,8 @@
 	                </select>
 	              </div>
 	              <div class="form-group">
-	                <label for="stock">Stock Minimum</label>
-	                <input type="number" class="form-control" id="stock" name="stok_minimum" placeholder="Masukkan Minimum Barang" required>
+	                <label for="stock">Jumlah Stok</label>
+	                <input type="number" class="form-control" id="stock" name="jumlah_stok" placeholder="Masukkan Jumlah Stok" required>
 	              </div>
 	              <div class="form-group">
 	                <label for="satuan">Satuan</label>
@@ -347,6 +357,10 @@
 	                    <option value="{{ $sat->id }}">{{ $sat->nama }}</option>
 	                  @endforeach
 	                </select>
+	              </div>
+	              <div class="form-group">
+	                <label for="stokMinimum">Stok Minimum</label>
+	                <input type="number" class="form-control" id="stokMinimum" name="stok_minimum" placeholder="Masukkan Stok Minimum" required>
 	              </div>
 	            </div>
 	          </div>
@@ -396,14 +410,19 @@
 									</select>
 								</div>
 								<div class="form-group">
-									<label for="stock">Stock Minimum</label>
+									<label for="stock">Jumlah Stok</label>
 									<input type="tel" class="form-control" id="stock"
-										placeholder="Masukkan Minimum Barang">
+										placeholder="Masukkan Jumlah Stok">
 								</div>
 								<div class="form-group">
 									<label for="satuan">Satuan</label>
 									<input type="tel" class="form-control" id="satuan"
 										placeholder="Masukkan Satuan Barang">
+								</div>
+								<div class="form-group">
+									<label for="stokMinimum">Stok Minimum</label>
+									<input type="tel" class="form-control" id="stokMinimum"
+										placeholder="Masukkan Stok Minimum">
 								</div>
 							</div>
 							<div class="col-md-5 col-lg-5">

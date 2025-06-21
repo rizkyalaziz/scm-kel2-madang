@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('kode');
             $table->unsignedBigInteger('kategori_id');
-            $table->integer('stok_minimum');
+            $table->integer('jumlah_stok')->default(0);
             $table->unsignedBigInteger('satuan_id');
             $table->string('gambar')->nullable();
             $table->timestamps();

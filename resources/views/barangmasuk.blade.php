@@ -119,7 +119,11 @@
 									            <select class="form-control" id="databarang_id" name="databarang_id" required>
 									              <option value="">-- Pilih Barang --</option>
 									              @foreach($databarang as $barang)
-									                <option value="{{ $barang->id }}">{{ $barang->nama }}</option>
+									                <option value="{{ $barang->id }}"
+									                  data-satuan="{{ $barang->satuan_id }}"
+									                  data-stok="{{ $barang->jumlah_stok }}">
+									                  {{ $barang->nama }}
+									                </option>
 									              @endforeach
 									            </select>
 									          </div>
@@ -186,7 +190,7 @@
 												<tr>
 													<td>{{ $i+1 }}</td>
 													<td>{{ $item->databarang->nama ?? '-' }}</td>
-													<td>{{ $item->satuan->nama ?? '-' }}</td>
+													<td>{{ optional($item->satuan)->nama ?? '-' }}</td>
 													<td>{{ $item->stok }}</td>
 													<td>{{ $item->tanggal_masuk }}</td>
 													<td>{{ $item->jumlah_masuk }}</td>
@@ -354,6 +358,20 @@
 				]);
 				$('#addRowModal').modal('hide');
 
+			});
+
+			$('#databarang_id').on('change', function() {
+				var satuanId = $('option:selected', this).data('satuan');
+				var stok = $('option:selected', this).data('stok');
+				$('#satuan_id').val(satuanId);
+				$('#stok').val(stok);
+				$('#jumlah_masuk').val('');
+				$('#sisa_stok').val(stok); // reset sisa stok ke stok awal
+			});
+			$('#jumlah_masuk').on('input', function() {
+				var stok = parseInt($('#stok').val()) || 0;
+				var jumlahMasuk = parseInt($(this).val()) || 0;
+				$('#sisa_stok').val(stok + jumlahMasuk);
 			});
 		});
 	</script>

@@ -139,21 +139,27 @@
                                             <thead class="table-dark">
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>ID Barang</th>
+                                                    <th>Tanggal Keluar</th>
                                                     <th>Nama Barang</th>
-                                                    <th>Stok</th>
                                                     <th>Satuan</th>
-                                                    <th>Aksi</th>
+                                                    <th>Stok Sebelum</th>
+                                                    <th>Jumlah Keluar</th>
+                                                    <th>Sisa Stok</th>
+                                                    <th>Keterangan</th>
+                                                    <th>Gambar</th>
                                                 </tr>
                                             </thead>
                                             <tfoot>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>ID Barang</th>
+                                                    <th>Tanggal Keluar</th>
                                                     <th>Nama Barang</th>
-                                                    <th>Stok</th>
                                                     <th>Satuan</th>
-                                                    <th>Aksi</th>
+                                                    <th>Stok Sebelum</th>
+                                                    <th>Jumlah Keluar</th>
+                                                    <th>Sisa Stok</th>
+                                                    <th>Keterangan</th>
+                                                    <th>Gambar</th>
                                                 </tr>
                                             </tfoot>
                                             <tbody>
@@ -161,12 +167,19 @@
                                                 @foreach($barangkeluar as $item)
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
-                                                    <td>{{ $item->databarang->id_barang ?? '-' }}</td>
-                                                    <td>{{ $item->databarang->nama ?? '-' }}</td>
-                                                    <td>{{ $item->jumlah }}</td>
-                                                    <td>{{ $item->databarang->satuan->nama ?? '-' }}</td>
-                                                    <td class="action-buttons">
-                                                        <!-- Aksi edit/hapus jika diperlukan -->
+                                                    <td>{{ $item->tanggal_keluar }}</td>
+                                                    <td>{{ $item->nama_barang }}</td>
+                                                    <td>{{ $item->satuan->nama ?? '-' }}</td>
+                                                    <td>{{ $item->stok }}</td>
+                                                    <td>{{ $item->jumlah_keluar }}</td>
+                                                    <td>{{ $item->sisa_stok }}</td>
+                                                    <td>{{ $item->keterangan }}</td>
+                                                    <td>
+                                                        @if($item->gambar)
+                                                            <img src="{{ asset('storage/' . $item->gambar) }}" alt="Gambar" width="50">
+                                                        @else
+                                                            -
+                                                        @endif
                                                     </td>
                                                 </tr>
                                                 @endforeach

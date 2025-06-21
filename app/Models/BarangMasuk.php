@@ -17,8 +17,7 @@ class BarangMasuk extends Model
         'tanggal_masuk',
         'keterangan',
         'sisa_stok',
-        'gambar',
-        'jumlah'
+        'gambar'
     ];
 
     public function databarang()

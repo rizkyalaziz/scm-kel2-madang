@@ -15,7 +15,9 @@ class DatabarangController extends Controller
         $kategori = Kategori::all();
         $jenis = \App\Models\Jenis::all();
         $satuan = Satuan::all();
-        return view('databarang', compact('barang', 'kategori', 'jenis', 'satuan'));
+        $barang_minimum = Databarang::whereColumn('jumlah_stok', '<=', 'stok_minimum')->get();
+        $jumlah_notif = $barang_minimum->count();
+        return view('databarang', compact('barang', 'kategori', 'jenis', 'satuan', 'barang_minimum', 'jumlah_notif'));
     }
 
     public function store(Request $request)
@@ -26,8 +28,9 @@ class DatabarangController extends Controller
             'kode' => 'required',
             'kategori_id' => 'required|exists:kategori,id',
             'jenis_id' => 'required|exists:jenis,id',
-            'stok_minimum' => 'required|integer',
+            'jumlah_stok' => 'required|integer',
             'satuan_id' => 'required|exists:satuan,id',
+            'stok_minimum' => 'required|integer|min:0',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         $data = $request->all();
@@ -47,8 +50,9 @@ class DatabarangController extends Controller
             'kode' => 'required',
             'kategori_id' => 'required|exists:kategori,id',
             'jenis_id' => 'required|exists:jenis,id',
-            'stok_minimum' => 'required|integer',
+            'jumlah_stok' => 'required|integer',
             'satuan_id' => 'required|exists:satuan,id',
+            'stok_minimum' => 'required|integer|min:0',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         $data = $request->all();
