@@ -33,7 +33,7 @@ class DatabarangController extends Controller
             'stok_minimum' => 'required|integer|min:0',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-        $data = $request->all();
+        $data = $request->except(['_token', '_method']);
         if ($request->hasFile('gambar')) {
             $data['gambar'] = $request->file('gambar')->store('barang', 'public');
         }
@@ -55,7 +55,7 @@ class DatabarangController extends Controller
             'stok_minimum' => 'required|integer|min:0',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-        $data = $request->all();
+        $data = $request->except(['_token', '_method']);
         if ($request->hasFile('gambar')) {
             $data['gambar'] = $request->file('gambar')->store('barang', 'public');
         }
