@@ -10,8 +10,8 @@ class Databarang extends Model
     use HasFactory;
     protected $table = 'barang';
     protected $fillable = [
-        'id_barang', 'nama', 'kode', 'kategori_id', 'jumlah_stok', 'satuan_id', 'gambar', 'jenis_id', 'stok_minimum'
-    ];
+    'id_barang', 'nama', 'kode', 'kategori_id', 'jenis_id', 'jumlah_stok', 'satuan_id', 'stok_minimum', 'gambar'
+];
 
     public function kategori()
     {

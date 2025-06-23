@@ -25,6 +25,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori');
 Route::get('/jenis', [JenisController::class, 'index'])->name('jenis');
 Route::get('/satuan', [SatuanController::class, 'index'])->name('satuan');
+Route::get('/databarang', [DatabarangController::class, 'index'])->name('databarang');
 
 Route::get('/tambahbarang', function () {
     return view('/tambahbarang');
