@@ -22,10 +22,28 @@ Route::get('/welcome', function () {
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+<
 Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori');
 Route::get('/jenis', [JenisController::class, 'index'])->name('jenis');
 Route::get('/satuan', [SatuanController::class, 'index'])->name('satuan');
 Route::get('/databarang', [DatabarangController::class, 'index'])->name('databarang');
+
+Route::get('/manager', function () {
+    return view('/manager');
+});
+
+Route::get('/kategori', function () {
+    return view('kategori');
+});
+
+Route::get('/jenis', function () {
+    return view('jenis');
+});
+
+Route::get('/satuan', function () {
+    return view('/satuan');
+});
+
 
 Route::get('/tambahbarang', function () {
     return view('/tambahbarang');
@@ -111,8 +129,35 @@ Route::get('/laporan-retur', [ReturBarangController::class, 'laporan'])->name('l
 Route::get('/laporan-retur/export-excel', [App\Http\Controllers\ReturBarangController::class, 'exportExcel'])->name('laporan-retur.export-excel');
 
 
+
 Route::get('/suppliertambah', function () {
     return view('/suppliertambah');
 });
 
 Route::get('/notifikasi', [NotifikasiController::class, 'index'])->name('notifikasi');
+
+Route::get('/laporan-retur', function () {
+    return view('/laporan-retur');
+});
+
+Route::get('/dbmanager', function () {
+    return view('/dbmanager');
+});
+
+Route::get('/suppliermanager', function () {
+    return view('/suppliermanager');
+});
+
+Route::get('/masuk-mg', function () {
+    return view('/masuk-mg');
+});
+
+Route::get('/keluar-mg', function () {
+    return view('/keluar-mg');
+});
+
+Route::get('/returmg', function () {
+    return view('/returmg');
+});
+
+
